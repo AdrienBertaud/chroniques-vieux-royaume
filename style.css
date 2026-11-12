@@ -191,6 +191,4 @@ header.open nav { position: absolute; top: 100%; right: 16px; width: max-content
                   margin-top: 6px; padding: 8px 14px; background: var(--paper); border: 1px solid var(--line);
                   border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.18); z-index: 3000;
                   max-height: 80vh; overflow-y: auto; }
-p.wiki-link { margin-top: 18px; font: .9em system-ui, sans-serif; }
-p.wiki-link a { text-decoration: none; }
 .legend .dot.approx { background: #fff6dc; border-style: dashed; }
