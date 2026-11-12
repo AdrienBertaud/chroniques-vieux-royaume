@@ -103,5 +103,7 @@ a.auto { text-decoration: none; border-bottom: 1px dotted var(--accent); }
 
 /* Small portraits in the lists of characters */
 ul.cards a.with-thumb { display: flex; align-items: center; gap: 10px; }
-.mini { flex: none; width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
-        object-position: top; border: 1px solid var(--line); background: var(--bg); display: inline-block; }
+.mini { flex: none; width: 24px !important; height: 24px !important; max-width: 24px; border-radius: 50%;
+        object-fit: cover; object-position: top; border: 1px solid var(--line); background: var(--bg);
+        display: inline-block; margin: 0; }
+ul.cards a.with-thumb { padding-top: 8px; padding-bottom: 8px; line-height: 1.3; }
