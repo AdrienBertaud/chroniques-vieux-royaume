@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Château de Canderas — niveau 4 · Chroniques du Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=fccd145e">
+<link rel="stylesheet" href="style.css?v=3f770a2e">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -32,7 +32,6 @@
 <li>Les Ouromans ont détruit les réserves de grain en partant. La famine a été évitée grâce au rituel du <a class="auto" href="religions-30-legende-vin-de-vanael.html">Vin de Vanaël</a>.</li>
 </ul></section>
 <div id="map" style="aspect-ratio: 4000 / 2710"></div>
-<p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const M = {"w": 4000, "h": 2710, "places": []};
@@ -48,10 +47,10 @@ for (const p of M.places) {
   const hasPlan = !!p.map;
   const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
   const marker = L.circleMarker([H - p.y, p.x], {
-      radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2,
-      fillColor: hasPlan ? '#e0563b' : '#f2d27a', fillOpacity: 0.9})
+      radius: 8, color: '#7a1f1f', weight: 2,
+      fillColor: '#f2d27a', fillOpacity: 0.9})
     .addTo(map)
-    .bindTooltip(p.name + (hasPlan ? ' (plan)' : '') );
+    .bindTooltip(p.name);
   // A click opens the description of the place; if there is none, its plan; else a bubble.
   if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
   else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
