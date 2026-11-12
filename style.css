@@ -78,6 +78,8 @@ figure.portrait img { width: 100%; border-radius: 8px; border: 1px solid var(--l
 .map-links a { display: inline-block; margin-right: 8px; padding: 4px 12px; border: 1px solid var(--accent);
                border-radius: 999px; text-decoration: none; font: .9em system-ui, sans-serif; }
 figure.portrait a + a img { margin-top: 10px; }
+.portrait-row { clear: both; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); margin: 10px 0 16px; }
+.portrait-row img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid var(--line); display: block; }
 
 /* Map navigation: breadcrumb and tree of all maps */
 nav.crumbs { font: .9em system-ui, sans-serif; color: var(--muted); margin-bottom: 4px; }
