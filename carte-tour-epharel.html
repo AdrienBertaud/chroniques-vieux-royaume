@@ -26,7 +26,7 @@
 <p><a class="auto" href="carte-chrysophee.html">Chrysophée</a>, enceinte nord. La tour où le démon <a class="auto" href="pnj-epharel.html">Epharel</a> était prisonnier.</p>
 
 <div id="map" style="aspect-ratio: 592 / 1309"></div>
-<p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé &nbsp; <span class="dot approx"></span> position approximative</p>
+<p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const M = {"w": 592, "h": 1309, "places": []};
@@ -42,10 +42,10 @@ for (const p of M.places) {
   const hasPlan = !!p.map;
   const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
   const marker = L.circleMarker([H - p.y, p.x], {
-      radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2, dashArray: p.approx ? '3 3' : null,
-      fillColor: hasPlan ? '#e0563b' : (p.approx ? '#fff6dc' : '#f2d27a'), fillOpacity: 0.9})
+      radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2,
+      fillColor: hasPlan ? '#e0563b' : '#f2d27a', fillOpacity: 0.9})
     .addTo(map)
-    .bindTooltip(p.name + (hasPlan ? ' (plan)' : '') + (p.approx ? ' (position approximative)' : ''));
+    .bindTooltip(p.name + (hasPlan ? ' (plan)' : '') );
   // A click opens the description of the place; if there is none, its plan; else a bubble.
   if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
   else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });

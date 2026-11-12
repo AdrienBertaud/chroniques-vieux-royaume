@@ -36,7 +36,7 @@
 <li>On dit que l'Académie est piégée par magie. Chats et rats déclenchent souvent des alarmes qui sèment la panique.</li>
 </ul><p class="wiki-link"><a href="https://vieuxroyaume.fandom.com/fr/wiki/Sp%C3%A9cial:Recherche?query=Acad%C3%A9mie%20des%20Enregistrements%20et%20la%20Tour%20pench%C3%A9e" target="_blank" rel="noopener">🔎 « Académie des Enregistrements et la Tour penchée » sur le wiki Récits du Vieux Royaume</a></p></section>
 <div id="map" style="aspect-ratio: 1042 / 1332"></div>
-<p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé &nbsp; <span class="dot approx"></span> position approximative</p>
+<p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const M = {"w": 1042, "h": 1332, "places": []};
@@ -52,10 +52,10 @@ for (const p of M.places) {
   const hasPlan = !!p.map;
   const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
   const marker = L.circleMarker([H - p.y, p.x], {
-      radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2, dashArray: p.approx ? '3 3' : null,
-      fillColor: hasPlan ? '#e0563b' : (p.approx ? '#fff6dc' : '#f2d27a'), fillOpacity: 0.9})
+      radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2,
+      fillColor: hasPlan ? '#e0563b' : '#f2d27a', fillOpacity: 0.9})
     .addTo(map)
-    .bindTooltip(p.name + (hasPlan ? ' (plan)' : '') + (p.approx ? ' (position approximative)' : ''));
+    .bindTooltip(p.name + (hasPlan ? ' (plan)' : '') );
   // A click opens the description of the place; if there is none, its plan; else a bubble.
   if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
   else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
