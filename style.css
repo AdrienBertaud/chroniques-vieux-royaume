@@ -165,10 +165,11 @@ nav.prev-next a { text-decoration: none; }
 /* Menu behind a single three-line button */
 header .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .brand a { color: inherit; text-decoration: none; }
-button.burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
-                width: 42px; height: 38px; padding: 8px; border: 1px solid var(--line); border-radius: 8px;
-                background: var(--paper); cursor: pointer; }
-button.burger span { display: block; height: 3px; border-radius: 2px; background: var(--accent); }
+button.burger { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 6px 12px;
+                border: 1px solid var(--accent); border-radius: 8px; background: var(--paper); cursor: pointer;
+                color: var(--accent); font: 600 .95em system-ui, sans-serif; }
+button.burger .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 20px; }
+button.burger .lines span { display: block; height: 3px; border-radius: 2px; background: var(--accent); }
 header nav { display: none; }
 header.open nav { display: flex; flex-direction: column; gap: 2px; margin-top: 10px; max-height: 75vh; overflow-y: auto; }
 header.open nav a, header.open nav .menu > span:first-child { padding: 6px 4px; font-size: 1em; }
