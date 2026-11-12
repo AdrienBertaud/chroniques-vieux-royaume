@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte · Chroniques du Vieux Royaume</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header><div class="brand">Chroniques du Vieux Royaume</div><nav><a href="index.html">Accueil</a>
+<a href="journal.html">Journal</a>
+<a href="heros.html">Les héros</a>
+<a href="pnj.html">Personnages</a>
+<a href="lieux.html">Lieux</a>
+<a href="quetes.html">Quêtes</a>
+<a href="chronologie.html">Chronologie</a>
+<a href="carte.html" class=active>Carte</a></nav></header>
+<main>
+<h1>Carte du Vieux Royaume</h1>
+<p>Cliquez sur un lieu pour le décrire.</p>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const M = {"width": 1024, "height": 745, "places": [{"name": "Bourg-Preux", "x": 488, "y": 405, "text": "Capitale de la Marche Franche, sur la Listrelle."}, {"name": "Château de Garches", "x": 520, "y": 455, "text": "Ruines de l'ancienne capitale du duché de Garches. Domaine des héros."}, {"name": "Lac de Croquerive", "x": 605, "y": 400, "text": "Lac creusé par la magie de la bataille de la Listrelle."}, {"name": "Volcan Kiriadum", "x": 440, "y": 232, "text": "Lieu du rituel du Vin de Vanaël."}, {"name": "Château de Canderas", "x": 297, "y": 190, "text": "Château du duc Ganelon de Bromaël, assiégé par les Ouromans."}, {"name": "Ciudalia", "x": 567, "y": 272, "text": "La République, cité des Princes Marchands."}, {"name": "Thalassyr", "x": 824, "y": 388, "text": "Île des îles pirates, ancien repaire de l'Innommable."}, {"name": "Les Landes Grises", "x": 700, "y": 575, "text": "Terres dévastées par la guerre, libérées de leur malédiction par Azog."}, {"name": "Chrysophée", "x": 836, "y": 612, "text": "Ruines de l'ancienne capitale du Vieux Royaume."}, {"name": "Les Cinq Vallées", "x": 150, "y": 660, "text": "Terre des elfes. Aldaron y a appris l'art druidique, et Embla y est née."}, {"name": "Royaume de Ressine", "x": 880, "y": 190, "text": "Royaume insulaire, rival de Ciudalia sur la mer Erridienne. Ali Pashino en est originaire."}]};
+const W = M.width, H = M.height;
+const map = L.map('map', {crs: L.CRS.Simple, minZoom: -1, maxZoom: 2, zoomSnap: 0.25});
+const bounds = [[0, 0], [H, W]];
+L.imageOverlay('carte.jpg', bounds).addTo(map);
+map.fitBounds(bounds);
+map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
+for (const p of M.places) {
+  L.circleMarker([H - p.y, p.x], {radius: 7, color: '#7a1f1f', weight: 2, fillColor: '#f2d27a', fillOpacity: 0.9})
+    .addTo(map)
+    .bindTooltip(p.name)
+    .bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
+}
+</script>
+</main>
+<footer>Site des joueurs. Mis à jour après chaque session.</footer>
+</body>
+</html>
