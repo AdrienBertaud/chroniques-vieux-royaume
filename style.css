@@ -193,3 +193,4 @@ header.open nav { position: absolute; top: 100%; right: 16px; width: max-content
                   max-height: 80vh; overflow-y: auto; }
 p.wiki-link { margin-top: 18px; font: .9em system-ui, sans-serif; }
 p.wiki-link a { text-decoration: none; }
+.legend .dot.approx { background: #fff6dc; border-style: dashed; }
