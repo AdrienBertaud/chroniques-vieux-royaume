@@ -185,3 +185,9 @@ header.open nav .menu-list a { padding: 4px 4px; white-space: normal; }
              font: 700 .8em/1.1 system-ui, sans-serif; color: var(--accent); padding: 4px; }
 /* The open menu is aligned on the right, under its button. */
 header.open nav { align-items: flex-end; text-align: right; }
+
+/* Open menu: a panel as wide as its text, on top of the page (the page does not move). */
+header.open nav { position: absolute; top: 100%; right: 16px; width: max-content; max-width: calc(100vw - 32px);
+                  margin-top: 6px; padding: 8px 14px; background: var(--paper); border: 1px solid var(--line);
+                  border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.18); z-index: 3000;
+                  max-height: 80vh; overflow-y: auto; }
