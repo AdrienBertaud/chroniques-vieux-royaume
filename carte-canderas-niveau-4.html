@@ -41,12 +41,15 @@ map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
 for (const p of M.places) {
   const hasPlan = !!p.map;
   const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
-  L.circleMarker([H - p.y, p.x], {
+  const marker = L.circleMarker([H - p.y, p.x], {
       radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2,
       fillColor: hasPlan ? '#e0563b' : '#f2d27a', fillOpacity: 0.9})
     .addTo(map)
-    .bindTooltip(p.name + (hasPlan ? ' (plan)' : ''))
-    .bindPopup('<strong>' + p.name + '</strong><br>' + p.text + link);
+    .bindTooltip(p.name + (hasPlan ? ' (plan)' : ''));
+  // A click opens the description of the place; if there is none, its plan; else a bubble.
+  if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
+  else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
+  else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 </script>
 </main>
