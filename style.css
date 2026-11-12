@@ -191,3 +191,12 @@ header.open nav { position: absolute; top: 100%; right: 16px; width: max-content
                   border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.18); z-index: 3000;
                   max-height: 80vh; overflow-y: auto; }
 .cards .who small { display: block; font: .8em system-ui, sans-serif; color: var(--muted); margin-top: 2px; }
+
+/* No top band: only a small menu button in the top right corner, over the page. */
+header { position: fixed; top: 10px; right: 10px; left: auto; padding: 0; background: none; border: none; }
+header .bar { justify-content: flex-end; }
+button.burger { height: 34px; padding: 6px 9px; border-color: var(--line); background: var(--paper); opacity: .85;
+                box-shadow: 0 2px 6px rgba(0,0,0,.12); }
+button.burger:hover, header.open button.burger { opacity: 1; border-color: var(--accent); }
+header.open nav { right: 0; }
+main { padding-top: 52px; }
