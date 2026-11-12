@@ -92,3 +92,7 @@ figure.inline img { width: 100%; display: block; border-radius: 8px; border: 1px
 figure.inline figcaption { font: .8em/1.3 system-ui, sans-serif; color: var(--muted); margin-top: 4px; }
 main h2 { clear: both; }
 @media (max-width: 560px) { figure.inline { float: none; width: 100%; margin: 8px 0; } }
+
+/* Home page: big image under the title */
+figure.inline.banner { float: none; width: 100%; margin: 8px 0 20px; }
+figure.inline.banner figcaption { text-align: center; }
