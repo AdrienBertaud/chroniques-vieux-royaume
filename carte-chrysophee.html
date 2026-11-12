@@ -21,13 +21,13 @@
 <a href="https://drive.google.com/file/d/1GdvTkxGa2Loo0v6moLKwRXJyx2KQF5L3/view?usp=drive_link" target="_blank" rel="noopener">Résumé PDF ↗</a></nav></header>
 <main>
 <h1>Plan de Chrysophée</h1>
-<p>L&#x27;ancienne capitale du Vieux Royaume, en ruine dans les Landes Grises. Le démon Epharel était prisonnier dans une tour de son enceinte.</p>
+<p>L&#x27;ancienne capitale du Vieux Royaume, en ruine dans les Landes Grises. Cliquez sur la tour marquée pour ouvrir son plan.</p>
 <p><a href="carte.html">← Retour à la carte précédente</a></p>
 <div id="map"></div>
 <p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1440, "h": 985, "places": []};
+const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel"}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -3, maxZoom: 2, zoomSnap: 0.25});
 const bounds = [[0, 0], [H, W]];
