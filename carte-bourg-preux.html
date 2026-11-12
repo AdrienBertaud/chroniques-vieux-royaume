@@ -21,9 +21,9 @@
 <a class="ext" href="https://docs.google.com/spreadsheets/d/1DmyQRkxf4uARUWNZ-sOHnfMn-g9q37PphnN37z9z6Rw/edit?usp=sharing" target="_blank" rel="noopener">Fiches ↗</a>
 <a class="ext" href="https://drive.google.com/file/d/1GdvTkxGa2Loo0v6moLKwRXJyx2KQF5L3/view?usp=drive_link" target="_blank" rel="noopener">Résumé PDF ↗</a></nav></header>
 <main class="wide">
-<nav class="crumbs"><a href="carte.html">Carte du Vieux Royaume</a> › <span>Plan de Bourg-Preux</span></nav><details class="map-tree"><summary>Toutes les cartes</summary><ul><li><a href="carte.html">Carte du Vieux Royaume</a><ul><li><strong>Plan de Bourg-Preux</strong><ul><li><a href="carte-bibliotheque.html">La bibliothèque de l&#x27;Académie des Enregistrements</a></li><li><a href="carte-rue-des-tourelles.html">La planque de la rue des Tourelles</a></li><li><a href="carte-distillerie.html">Le repaire de Rosso Dagarella</a></li></ul></li><li><a href="carte-chrysophee.html">Plan de Chrysophée</a><ul><li><a href="carte-tour-epharel.html">La tour d&#x27;Epharel</a></li></ul></li><li><a href="carte-canderas-niveau-0.html">Château de Canderas — niveau 0</a></li><li><a href="carte-canderas-niveau-4.html">Château de Canderas — niveau 4</a></li></ul></li></ul></details><p class="map-links">Plans détaillés : <a href="carte-bibliotheque.html">Académie des Enregistrements</a> <a href="carte-rue-des-tourelles.html">Rue des Tourelles</a> <a href="carte-distillerie.html">Les forges de la Nainerie</a></p>
+<nav class="crumbs"><a href="carte.html">Carte du Vieux Royaume</a> › <span>Plan de Bourg-Preux</span></nav><details class="map-tree"><summary>Toutes les cartes</summary><ul><li><a href="carte.html">Carte du Vieux Royaume</a><ul><li><strong>Plan de Bourg-Preux</strong><ul><li><a href="carte-bibliotheque.html">La bibliothèque de l&#x27;Académie des Enregistrements</a></li><li><a href="carte-rue-des-tourelles.html">La planque de la rue des Tourelles</a></li><li><a href="carte-distillerie.html">Le repaire de Rosso Dagarella</a></li></ul></li><li><a href="carte-chrysophee.html">Plan de Chrysophée</a><ul><li><a href="carte-tour-epharel.html">La tour d&#x27;Epharel</a></li></ul></li><li><a href="carte-canderas-niveau-0.html">Château de Canderas — niveau 0</a></li><li><a href="carte-canderas-niveau-4.html">Château de Canderas — niveau 4</a></li></ul></li></ul></details><p class="map-links">Plans détaillés : <a href="carte-bibliotheque.html">Académie des Enregistrements</a> <a href="carte-rue-des-tourelles.html">Rue des Tourelles</a> <a href="carte-distillerie.html">Repaire de Rosso Dagarella</a></p>
 <h1>Plan de Bourg-Preux</h1>
-<p>Capitale de la Marche Franche. Cliquez sur un lieu marqué pour ouvrir son plan.</p>
+<p>Capitale de la Marche Franche. Cliquez sur un lieu pour ouvrir sa description.</p>
 <section class="place-desc">
 
 <ul>
@@ -37,7 +37,7 @@
 <p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 877, "h": 626, "places": [{"name": "Académie des Enregistrements", "x": 375, "y": 352, "text": "L'Académie et sa bibliothèque.", "map": "bibliotheque"}, {"name": "Rue des Tourelles", "x": 280, "y": 333, "text": "La planque du Voïvode Brancovan, derrière la Maison Forte.", "map": "rue-des-tourelles"}, {"name": "Les forges de la Nainerie", "x": 215, "y": 285, "text": "Le repaire de Rosso Dagarella, où Spada Rapazzoni fut prisonnier.", "map": "distillerie"}, {"name": "Temple de la Déesse Douce", "x": 630, "y": 414, "text": "Le temple où est gardée la Conque de Khêl."}]};
+const M = {"w": 877, "h": 626, "places": [{"name": "Temple de la Déesse Douce", "x": 630, "y": 414, "text": "1 · Le temple et son hospice.", "desc": "lieux-bp-temple-deesse-douce.html"}, {"name": "Taverne « Le Gros Brochet »", "x": 225, "y": 132, "text": "2 · Taverne près du marché au poisson.", "desc": "lieux-bp-gros-brochet.html"}, {"name": "Taverne « Chez Tromblon »", "x": 248, "y": 322, "text": "3 · Taverne du nain Tromblon.", "desc": "lieux-bp-chez-tromblon.html"}, {"name": "Taverne « Le Gai Piquier »", "x": 330, "y": 405, "text": "4 · Taverne des soldats.", "desc": "lieux-bp-gai-piquier.html"}, {"name": "Auberge « Aux armes de Garches »", "x": 490, "y": 338, "text": "5 · Auberge de luxe.", "desc": "lieux-bp-aux-armes-de-garches.html"}, {"name": "Auberge « Au Dernier Carré »", "x": 614, "y": 282, "text": "6 · Auberge des petites gens.", "desc": "lieux-bp-dernier-carre.html"}, {"name": "Temple de la Vieille Déesse", "x": 425, "y": 190, "text": "Sur l'île du lac de Croquerive.", "desc": "lieux-bp-temple-vieille-deesse.html"}, {"name": "Sanctuaire du Desséché", "x": 790, "y": 140, "text": "Le Bosquet du Desséché, hors des murs.", "desc": "lieux-bp-temple-dessechee.html"}, {"name": "Temple du Resplendissant", "x": 180, "y": 195, "text": "", "desc": "lieux-bp-temple-resplendissant.html"}, {"name": "Temple de Gullweig", "x": 205, "y": 250, "text": "", "desc": "lieux-bp-temple-gullweig.html"}, {"name": "Temple d'Ululata", "x": 233, "y": 100, "text": "", "desc": "lieux-bp-temple-ululata.html"}, {"name": "Maison Forte", "x": 292, "y": 347, "text": "Siège des échevins.", "desc": "lieux-bp-maison-forte.html"}, {"name": "Académie des Enregistrements", "x": 375, "y": 352, "text": "L'Académie et sa bibliothèque.", "map": "bibliotheque", "desc": "carte-bibliotheque.html"}, {"name": "Rue des Tourelles", "x": 280, "y": 333, "text": "La maison du Voïvode Brancovan.", "map": "rue-des-tourelles", "desc": "carte-rue-des-tourelles.html"}, {"name": "Capitainerie", "x": 298, "y": 282, "text": "", "desc": "lieux-bp-capitainerie.html"}, {"name": "Nainerie", "x": 155, "y": 330, "text": "Le quartier des nains et des gnomes.", "desc": "lieux-bp-nainerie.html"}, {"name": "Marché au Poisson", "x": 272, "y": 118, "text": "", "desc": "lieux-bp-marche-aux-poissons.html"}, {"name": "Place du Marché", "x": 550, "y": 292, "text": "", "desc": "lieux-bp-place-du-marche.html"}, {"name": "Place d'Armes", "x": 318, "y": 372, "text": "", "desc": "lieux-bp-place-d-armes.html"}, {"name": "Repaire de Rosso Dagarella", "x": 215, "y": 285, "text": "Les vieilles forges de la Nainerie, où Spada fut prisonnier.", "map": "distillerie", "desc": "carte-distillerie.html"}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -59,7 +59,29 @@ for (const p of M.places) {
   else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
-</script>
+</script><h2>Les lieux de la ville</h2>
+<ul class=cards>
+<li><a href="lieux-bp-temple-deesse-douce.html">Temple de la Déesse Douce</a></li>
+<li><a href="lieux-bp-gros-brochet.html">Taverne « Le Gros Brochet »</a></li>
+<li><a href="lieux-bp-chez-tromblon.html">Taverne « Chez Tromblon »</a></li>
+<li><a href="lieux-bp-gai-piquier.html">Taverne « Le Gai Piquier »</a></li>
+<li><a href="lieux-bp-aux-armes-de-garches.html">Auberge « Aux armes de Garches »</a></li>
+<li><a href="lieux-bp-dernier-carre.html">Auberge « Au Dernier Carré »</a></li>
+<li><a href="lieux-bp-temple-vieille-deesse.html">Temple de la Vieille Déesse</a></li>
+<li><a href="lieux-bp-temple-dessechee.html">Sanctuaire du Desséché</a></li>
+<li><a href="lieux-bp-temple-resplendissant.html">Temple du Resplendissant</a></li>
+<li><a href="lieux-bp-temple-gullweig.html">Temple de Gullweig</a></li>
+<li><a href="lieux-bp-temple-ululata.html">Temple d&#x27;Ululata</a></li>
+<li><a href="lieux-bp-maison-forte.html">Maison Forte</a></li>
+<li><a href="carte-bibliotheque.html">Académie des Enregistrements</a></li>
+<li><a href="carte-rue-des-tourelles.html">Rue des Tourelles</a></li>
+<li><a href="lieux-bp-capitainerie.html">Capitainerie</a></li>
+<li><a href="lieux-bp-nainerie.html">Nainerie</a></li>
+<li><a href="lieux-bp-marche-aux-poissons.html">Marché au Poisson</a></li>
+<li><a href="lieux-bp-place-du-marche.html">Place du Marché</a></li>
+<li><a href="lieux-bp-place-d-armes.html">Place d&#x27;Armes</a></li>
+<li><a href="carte-distillerie.html">Repaire de Rosso Dagarella</a></li>
+</ul>
 </main>
 </body>
 </html>
