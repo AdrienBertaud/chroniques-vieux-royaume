@@ -180,3 +180,6 @@ header.open nav .menu > span:first-child { display: block; color: var(--ink); fo
 header.open nav .menu-list { display: block; position: static; box-shadow: none; border: none;
                              background: none; padding: 0 0 4px 14px; max-height: none; min-width: 0; }
 header.open nav .menu-list a { padding: 4px 4px; white-space: normal; }
+/* Approximate dates in the circles of the history list */
+.mini.date { display: inline-flex; align-items: center; justify-content: center; text-align: center;
+             font: 700 .8em/1.1 system-ui, sans-serif; color: var(--accent); padding: 4px; }
