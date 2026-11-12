@@ -183,3 +183,5 @@ header.open nav .menu-list a { padding: 4px 4px; white-space: normal; }
 /* Approximate dates in the circles of the history list */
 .mini.date { display: inline-flex; align-items: center; justify-content: center; text-align: center;
              font: 700 .8em/1.1 system-ui, sans-serif; color: var(--accent); padding: 4px; }
+/* The open menu is aligned on the right, under its button. */
+header.open nav { align-items: flex-end; text-align: right; }
