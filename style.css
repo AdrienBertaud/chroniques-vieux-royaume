@@ -62,3 +62,15 @@ ul.cards a span { color: var(--muted); font-size: .9em; }
 .legend .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%;
                background: #f2d27a; border: 2px solid #7a1f1f; vertical-align: -2px; }
 .legend .dot.plan { background: #e0563b; }
+
+/* Gallery */
+.gallery { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+.gallery figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.gallery img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.gallery figcaption { padding: 6px 8px; font: .85em/1.3 system-ui, sans-serif; }
+.gallery figcaption a { text-decoration: none; }
+
+/* Portrait on hero and NPC pages */
+figure.portrait { float: right; margin: 0 0 12px 18px; width: min(40%, 280px); }
+figure.portrait img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+@media (max-width: 560px) { figure.portrait { float: none; width: 100%; margin: 0 0 12px; } }
