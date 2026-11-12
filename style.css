@@ -76,3 +76,4 @@ figure.portrait img { width: 100%; border-radius: 8px; border: 1px solid var(--l
 @media (max-width: 560px) { figure.portrait { float: none; width: 100%; margin: 0 0 12px; } }
 .map-links a { display: inline-block; margin-right: 8px; padding: 4px 12px; border: 1px solid var(--accent);
                border-radius: 999px; text-decoration: none; font: .9em system-ui, sans-serif; }
+figure.portrait a + a img { margin-top: 10px; }
