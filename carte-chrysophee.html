@@ -25,19 +25,20 @@
 <main class="wide">
 <nav class="crumbs"><a href="carte.html">Carte du Vieux Royaume</a> › <span>Plan de Chrysophée</span></nav><details class="map-tree"><summary>Toutes les cartes</summary><ul><li><a href="carte.html">Carte du Vieux Royaume</a><ul><li><a href="carte-bourg-preux.html">Plan de Bourg-Preux</a><ul><li><a href="carte-bibliotheque.html">La bibliothèque de l&#x27;Académie des Enregistrements</a></li><li><a href="carte-rue-des-tourelles.html">La planque de la rue des Tourelles</a></li><li><a href="carte-distillerie.html">Le repaire de Rosso Dagarella</a></li></ul></li><li><strong>Plan de Chrysophée</strong><ul><li><a href="carte-tour-epharel.html">La tour d&#x27;Epharel</a></li></ul></li><li><a href="carte-canderas-niveau-0.html">Château de Canderas — niveau 0</a></li><li><a href="carte-canderas-niveau-4.html">Château de Canderas — niveau 4</a></li></ul></li></ul></details><p class="map-links">Plans détaillés : <a href="carte-tour-epharel.html">La tour d&#x27;Epharel</a></p>
 <h1>Plan de Chrysophée</h1>
-<p>L&#x27;ancienne capitale du <a class="auto" href="carte.html">Vieux Royaume</a>, en ruine dans les <a class="auto" href="lieux-landes-grises.html">Landes Grises</a>. Cliquez sur la tour marquée pour ouvrir son plan.</p>
+<p>L&#x27;ancienne capitale du <a class="auto" href="carte.html">Vieux Royaume</a>, en ruine dans les <a class="auto" href="lieux-landes-grises.html">Landes Grises</a>. Cliquez sur un lieu pour ouvrir sa description.</p>
 <section class="place-desc">
 
 <ul>
 <li>Ancienne capitale du <a class="auto" href="carte.html">Vieux Royaume</a>, en ruine, à l'extrême sud-est des <a class="auto" href="lieux-landes-grises.html">Landes Grises</a>.</li>
 <li>Prise par la Horde du <a class="auto" href="pnj-leodegar-vii.html">Roi-Idiot</a> en 699 CR.</li>
 <li>Le démon <a class="auto" href="pnj-epharel.html">Epharel</a> était prisonnier dans une tour de son enceinte nord.</li>
+<li>Au milieu des ruines subsiste une taverne, la <a class="auto" href="lieux-ch-couronne-brisee.html">Couronne Brisée</a>. Les héros y sont interdits d'entrée.</li>
 </ul></section>
 <div id="map" style="aspect-ratio: 1440 / 985"></div>
 <p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel"}]};
+const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel"}, {"name": "Taverne de la Couronne Brisée", "x": 808, "y": 296, "text": "La taverne de la grosse Lulette. Les héros y sont interdits d'entrée.", "desc": "lieux-ch-couronne-brisee.html"}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -59,7 +60,10 @@ for (const p of M.places) {
   else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
-</script>
+</script><h2>Les lieux de la ville</h2>
+<ul class=cards>
+<li><a href="lieux-ch-couronne-brisee.html">Taverne de la Couronne Brisée</a></li>
+</ul>
 </main>
 </body>
 </html>
