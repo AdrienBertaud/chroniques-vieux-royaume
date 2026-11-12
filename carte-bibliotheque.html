@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La bibliothèque de l&#x27;Académie des Enregistrements · Chroniques du Vieux Royaume</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header><div class="brand">Chroniques du Vieux Royaume</div><nav><a href="index.html">Accueil</a>
+<a href="journal.html">Journal</a>
+<a href="heros.html">Les héros</a>
+<a href="pnj.html">Personnages</a>
+<a href="lieux.html">Lieux</a>
+<a href="quetes.html">Quêtes</a>
+<a href="chronologie.html">Chronologie</a>
+<a href="carte.html" class=active>Carte</a>
+<a href="documents.html">Documents</a>
+<a href="https://docs.google.com/spreadsheets/d/1DmyQRkxf4uARUWNZ-sOHnfMn-g9q37PphnN37z9z6Rw/edit?usp=sharing" target="_blank" rel="noopener">Fiches ↗</a>
+<a href="https://drive.google.com/file/d/1GdvTkxGa2Loo0v6moLKwRXJyx2KQF5L3/view?usp=drive_link" target="_blank" rel="noopener">Résumé PDF ↗</a></nav></header>
+<main>
+<h1>La bibliothèque de l&#x27;Académie des Enregistrements</h1>
+<p>Bourg-Preux.</p>
+<p><a href="carte-bourg-preux.html">← Retour à la carte précédente</a></p>
+<div id="map"></div>
+<p class="legend"><span class="dot"></span> lieu &nbsp; <span class="dot plan"></span> lieu avec un plan détaillé</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const M = {"w": 1042, "h": 1332, "places": []};
+const W = M.w, H = M.h;
+const map = L.map('map', {crs: L.CRS.Simple, minZoom: -3, maxZoom: 2, zoomSnap: 0.25});
+const bounds = [[0, 0], [H, W]];
+L.imageOverlay('carte-bibliotheque.jpg', bounds).addTo(map);
+map.fitBounds(bounds);
+map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
+for (const p of M.places) {
+  const hasPlan = !!p.map;
+  const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
+  L.circleMarker([H - p.y, p.x], {
+      radius: hasPlan ? 10 : 7, color: '#7a1f1f', weight: hasPlan ? 3 : 2,
+      fillColor: hasPlan ? '#e0563b' : '#f2d27a', fillOpacity: 0.9})
+    .addTo(map)
+    .bindTooltip(p.name + (hasPlan ? ' (plan)' : ''))
+    .bindPopup('<strong>' + p.name + '</strong><br>' + p.text + link);
+}
+</script>
+</main>
+<footer>Site des joueurs. Mis à jour après chaque session.</footer>
+</body>
+</html>
