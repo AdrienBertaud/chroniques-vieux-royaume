@@ -99,3 +99,4 @@ figure.inline.banner { float: none; width: min(100%, 480px); margin: 8px auto 20
 figure.inline.banner figcaption { text-align: center; }
 nav .nav-sep { color: var(--line); }
 nav a.ext { color: var(--accent); }
+a.auto { text-decoration: none; border-bottom: 1px dotted var(--accent); }
