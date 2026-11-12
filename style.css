@@ -57,3 +57,4 @@ section.latest { margin-top: 2em; padding: 4px 20px 12px; background: var(--pape
 .timeline ol li::before { background: var(--accent); border-color: var(--accent); }
 .timeline ol { border-left-color: var(--accent); }
 h2 a.badge { font-size: .55em; vertical-align: 4px; }
+ul.cards a span { color: var(--muted); font-size: .9em; }
