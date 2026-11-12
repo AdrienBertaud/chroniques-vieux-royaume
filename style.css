@@ -153,3 +153,11 @@ nav .menu-list a:hover { background: var(--bg); color: var(--accent); }
 /* First image of a place page: full width of the text */
 figure.inline.wide { float: none; width: 100%; margin: 6px 0 16px; }
 figure.inline.wide img { width: 100%; height: auto; }
+
+/* Links from the timeline to the history pages */
+a.hist-badge { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px;
+               border: 1px solid var(--accent); color: var(--accent); font: 600 .75em system-ui, sans-serif;
+               text-decoration: none; white-space: nowrap; vertical-align: 2px; }
+nav.prev-next { display: flex; justify-content: space-between; gap: 12px; margin-top: 32px;
+                padding-top: 12px; border-top: 1px solid var(--line); font: .9em system-ui, sans-serif; }
+nav.prev-next a { text-decoration: none; }
