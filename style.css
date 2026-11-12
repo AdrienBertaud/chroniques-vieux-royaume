@@ -97,3 +97,5 @@ main h2 { clear: both; }
 /* Home page: big image under the title */
 figure.inline.banner { float: none; width: 100%; margin: 8px 0 20px; }
 figure.inline.banner figcaption { text-align: center; }
+nav .nav-sep { color: var(--line); }
+nav a.ext { color: var(--accent); }
