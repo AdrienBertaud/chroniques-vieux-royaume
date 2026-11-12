@@ -25,7 +25,8 @@ ul.cards { list-style: none; padding: 0; display: grid; gap: 10px;
            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 ul.cards a { display: block; padding: 12px 14px; background: var(--paper);
              border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
-#map { height: 75vh; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+#map { width: 100%; height: auto; max-height: 85vh; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+main.wide { max-width: none; padding-left: 16px; padding-right: 16px; }
 footer { text-align: center; color: var(--muted); font-size: .85em; padding: 24px 16px; }
 
 /* Quest badges: an element linked to a quest of the heroes */
