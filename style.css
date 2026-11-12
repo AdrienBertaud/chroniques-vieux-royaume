@@ -161,3 +161,21 @@ a.hist-badge { display: inline-block; margin-left: 6px; padding: 1px 8px; border
 nav.prev-next { display: flex; justify-content: space-between; gap: 12px; margin-top: 32px;
                 padding-top: 12px; border-top: 1px solid var(--line); font: .9em system-ui, sans-serif; }
 nav.prev-next a { text-decoration: none; }
+
+/* Menu behind a single three-line button */
+header .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand a { color: inherit; text-decoration: none; }
+button.burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+                width: 42px; height: 38px; padding: 8px; border: 1px solid var(--line); border-radius: 8px;
+                background: var(--paper); cursor: pointer; }
+button.burger span { display: block; height: 3px; border-radius: 2px; background: var(--accent); }
+header nav { display: none; }
+header.open nav { display: flex; flex-direction: column; gap: 2px; margin-top: 10px; max-height: 75vh; overflow-y: auto; }
+header.open nav a, header.open nav .menu > span:first-child { padding: 6px 4px; font-size: 1em; }
+header.open nav .nav-sep { display: none; }
+/* Inside the open menu, sub-menus are shown as indented lists (no hover needed). */
+header.open nav .menu { display: block; }
+header.open nav .menu > span:first-child { display: block; color: var(--ink); font-weight: 600; }
+header.open nav .menu-list { display: block; position: static; box-shadow: none; border: none;
+                             background: none; padding: 0 0 4px 14px; max-height: none; min-width: 0; }
+header.open nav .menu-list a { padding: 4px 4px; white-space: normal; }

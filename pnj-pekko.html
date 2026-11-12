@@ -4,11 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pekko · Chroniques du Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=7da362c7">
+<link rel="stylesheet" href="style.css?v=509cfedb">
 
 </head>
 <body>
-<header><div class="brand">Chroniques du Vieux Royaume</div><nav><a href="index.html">Accueil</a>
+<header><div class="bar"><div class="brand"><a href="index.html">Chroniques du Vieux Royaume</a></div>
+<button class="burger" aria-label="Menu" aria-expanded="false"
+  onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+<span></span><span></span><span></span></button></div>
+<nav><a href="index.html">Accueil</a>
 <a href="journal.html">Journal</a>
 <a href="heros.html">Les héros</a>
 <a href="pnj.html" class=active>Personnages</a>
