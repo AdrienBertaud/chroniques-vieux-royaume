@@ -77,3 +77,18 @@ figure.portrait img { width: 100%; border-radius: 8px; border: 1px solid var(--l
 .map-links a { display: inline-block; margin-right: 8px; padding: 4px 12px; border: 1px solid var(--accent);
                border-radius: 999px; text-decoration: none; font: .9em system-ui, sans-serif; }
 figure.portrait a + a img { margin-top: 10px; }
+
+/* Map navigation: breadcrumb and tree of all maps */
+nav.crumbs { font: .9em system-ui, sans-serif; color: var(--muted); margin-bottom: 4px; }
+nav.crumbs a { text-decoration: none; }
+nav.crumbs span { color: var(--ink); font-weight: 600; }
+details.map-tree { font: .9em system-ui, sans-serif; margin: 4px 0 8px; }
+details.map-tree summary { cursor: pointer; color: var(--accent); }
+details.map-tree ul { margin: 4px 0; padding-left: 18px; }
+
+/* Images inside texts */
+figure.inline { float: right; clear: right; width: min(38%, 260px); margin: 4px 0 12px 18px; }
+figure.inline img { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); }
+figure.inline figcaption { font: .8em/1.3 system-ui, sans-serif; color: var(--muted); margin-top: 4px; }
+main h2 { clear: both; }
+@media (max-width: 560px) { figure.inline { float: none; width: 100%; margin: 8px 0; } }
