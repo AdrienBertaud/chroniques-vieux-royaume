@@ -95,7 +95,7 @@ main h2 { clear: both; }
 @media (max-width: 560px) { figure.inline { float: none; width: 100%; margin: 8px 0; } }
 
 /* Home page: big image under the title */
-figure.inline.banner { float: none; width: 100%; margin: 8px 0 20px; }
+figure.inline.banner { float: none; width: min(100%, 480px); margin: 8px auto 20px; }
 figure.inline.banner figcaption { text-align: center; }
 nav .nav-sep { color: var(--line); }
 nav a.ext { color: var(--accent); }
