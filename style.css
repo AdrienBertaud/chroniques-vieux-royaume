@@ -190,3 +190,4 @@ header.open nav { position: absolute; top: 100%; right: 16px; width: max-content
                   margin-top: 6px; padding: 8px 14px; background: var(--paper); border: 1px solid var(--line);
                   border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.18); z-index: 3000;
                   max-height: 80vh; overflow-y: auto; }
+.cards .who small { display: block; font: .8em system-ui, sans-serif; color: var(--muted); margin-top: 2px; }
