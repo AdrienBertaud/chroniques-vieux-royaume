@@ -201,8 +201,6 @@ main { padding-top: 52px; }
 footer.sources { margin-top: 40px; padding-top: 10px; border-top: 1px solid var(--line); font: .85em system-ui, sans-serif; color: var(--muted); }
 footer.sources p { margin: 4px 0; }
 figure.inline.wide img { max-height: 75vh; object-fit: contain; }
-footer.notice { max-width: 860px; margin: 0 auto; padding: 14px 16px 32px; border-top: 1px solid var(--line); font: italic .8em/1.5 system-ui, sans-serif; color: var(--muted); }
-footer.notice p { margin: 4px 0; }
 /* Journal: one block per arc, the current arc framed */
 section.arc { margin: 36px 0 0; padding-top: 6px; }
 section.arc h2 { margin-bottom: 0; }
