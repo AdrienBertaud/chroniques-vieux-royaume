@@ -229,3 +229,4 @@ main:not(.with-side) .strip, main:not(.with-side) .strip.even, .portrait-row { d
 main:not(.with-side) .strip figure.inline:not(.wide) img, .portrait-row img { height: 160px; width: auto; aspect-ratio: auto; object-fit: contain; }
 figure.portrait { width: auto; }
 figure.portrait img { height: 200px; width: auto; max-width: min(100%, 70vw); }
+nav.prev-next { clear: both; }
