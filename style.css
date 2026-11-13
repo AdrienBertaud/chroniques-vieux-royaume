@@ -220,3 +220,12 @@ main.wide > *:not(#map) { max-width: 828px; margin-left: auto; margin-right: aut
 main.wide #map + ul.cards, main.wide #map ~ ul.cards { margin-top: 32px; }
 h1 + figure.inline.banner { margin-top: 28px; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* Same height for every image, proportions kept (the timeline keeps its small squares) */
+main:not(.with-side) figure.inline:not(.wide) { width: auto; display: table; }
+main:not(.with-side) figure.inline:not(.wide) img { height: 200px; width: auto; max-width: min(100%, 70vw);
+                                                    aspect-ratio: auto; object-fit: contain; }
+main:not(.with-side) figure.inline:not(.wide) figcaption { display: table-caption; caption-side: bottom; }
+main:not(.with-side) .strip, main:not(.with-side) .strip.even, .portrait-row { display: flex; flex-wrap: wrap; gap: 10px; }
+main:not(.with-side) .strip figure.inline:not(.wide) img, .portrait-row img { height: 160px; width: auto; aspect-ratio: auto; object-fit: contain; }
+figure.portrait { width: auto; }
+figure.portrait img { height: 200px; width: auto; max-width: min(100%, 70vw); }
