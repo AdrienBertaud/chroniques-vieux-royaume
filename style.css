@@ -202,3 +202,4 @@ header.open nav { right: 0; }
 main { padding-top: 52px; }
 footer.sources { margin-top: 40px; padding-top: 10px; border-top: 1px solid var(--line); font: .85em system-ui, sans-serif; color: var(--muted); }
 footer.sources p { margin: 4px 0; }
+figure.inline.wide img { max-height: 75vh; object-fit: contain; }
