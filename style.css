@@ -210,3 +210,4 @@ section.arc p { text-align: justify; hyphens: auto; }
 section.arc.current { padding: 6px 18px 14px; border: 1px solid var(--accent); border-radius: 12px; background: var(--paper); }
 .arc-toc { margin-bottom: 8px; }
 .mini.date.letter { font: 2.2em/1 Georgia, "Noto Sans Runic", "Segoe UI Historic", "Noto Sans Devanagari", serif; }
+.mini.date.initials { font: 600 1.7em/1 Georgia, serif; letter-spacing: .04em; }
