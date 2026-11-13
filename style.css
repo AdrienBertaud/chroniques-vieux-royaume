@@ -82,9 +82,6 @@ figure.portrait a + a img { margin-top: 10px; }
 nav.crumbs { font: .9em system-ui, sans-serif; color: var(--muted); margin-bottom: 4px; }
 nav.crumbs a { text-decoration: none; }
 nav.crumbs span { color: var(--ink); font-weight: 600; }
-details.map-tree { font: .9em system-ui, sans-serif; margin: 4px 0 8px; }
-details.map-tree summary { cursor: pointer; color: var(--accent); }
-details.map-tree ul { margin: 4px 0; padding-left: 18px; }
 
 /* Images inside texts */
 figure.inline { float: right; clear: right; width: min(38%, 260px); margin: 4px 0 12px 18px; }
