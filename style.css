@@ -202,3 +202,11 @@ footer.sources p { margin: 4px 0; }
 figure.inline.wide img { max-height: 75vh; object-fit: contain; }
 footer.notice { max-width: 860px; margin: 0 auto; padding: 14px 16px 32px; border-top: 1px solid var(--line); font: italic .8em/1.5 system-ui, sans-serif; color: var(--muted); }
 footer.notice p { margin: 4px 0; }
+/* Journal: one block per arc, the current arc framed */
+section.arc { margin: 36px 0 0; padding-top: 6px; }
+section.arc h2 { margin-bottom: 0; }
+.arc-date { margin: 2px 0 12px; font: italic .9em system-ui, sans-serif; color: var(--muted); }
+section.arc p { text-align: justify; hyphens: auto; }
+section.arc.current { padding: 6px 18px 14px; border: 1px solid var(--accent); border-radius: 12px; background: var(--paper); }
+.arc-toc { margin-bottom: 8px; }
+.mini.date.letter { font: 2.2em/1 Georgia, "Noto Sans Runic", "Segoe UI Historic", "Noto Sans Devanagari", serif; }
