@@ -217,3 +217,4 @@ blockquote p:last-child { text-align: right; font-style: normal; color: var(--mu
 @media (max-width: 560px) { .strip.even { grid-template-columns: repeat(2, 1fr); } }
 .home-cards { margin-top: 32px; }
 main.wide > *:not(#map) { max-width: 828px; margin-left: auto; margin-right: auto; }
+main.wide #map + ul.cards, main.wide #map ~ ul.cards { margin-top: 32px; }
