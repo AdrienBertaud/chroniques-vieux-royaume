@@ -219,4 +219,3 @@ blockquote p:last-child { text-align: right; font-style: normal; color: var(--mu
 main.wide > *:not(#map) { max-width: 828px; margin-left: auto; margin-right: auto; }
 main.wide #map + ul.cards, main.wide #map ~ ul.cards { margin-top: 32px; }
 h1 + figure.inline.banner { margin-top: 28px; }
-.gold { filter: grayscale(1) sepia(1) saturate(5) brightness(1.05) hue-rotate(-8deg); }
