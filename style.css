@@ -107,13 +107,14 @@ ul.cards a.with-thumb { padding-top: 8px; padding-bottom: 8px; line-height: 1.3;
 /* Timeline: each event is a row, text on the left, images in a column on the right
    (outside the text column). A light line separates the events. */
 main.with-side { max-width: 1000px; }
-.timeline li { display: grid; grid-template-columns: minmax(0, 1fr) 100px; gap: 16px;
+.timeline li { display: grid; grid-template-columns: minmax(0, 1fr) 75px; gap: 16px;
                padding-bottom: 8px; border-bottom: 1px dotted var(--line); }
 .timeline li .tl-side { display: flex; flex-direction: column; gap: 6px; }
-.timeline a.tl-thumb img { width: 100px; height: 75px; object-fit: cover; display: block;
+.timeline a.tl-thumb img { width: 75px; height: 75px; object-fit: cover; display: block;
                            border-radius: 6px; border: 1px solid var(--line); }
 @media (max-width: 700px) {
   .timeline li { grid-template-columns: minmax(0, 1fr) 48px; gap: 10px; }
+  .timeline a.tl-thumb img { width: 48px; height: 48px; }
 }
 .timeline figure.inline { float: right; width: 40px; margin: 0 0 0 8px; }
 .timeline figure.inline img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; }
