@@ -33,7 +33,7 @@
 <div id="map" style="aspect-ratio: 1440 / 985"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel"}, {"name": "Taverne de la Couronne Brisée", "x": 860, "y": 330, "text": "La taverne de la grosse Lulette. Les héros y sont interdits d'entrée.", "desc": "lieux-ch-couronne-brisee.html"}]};
+const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel", "desc": "carte-tour-epharel.html"}, {"name": "Taverne de la Couronne Brisée", "x": 860, "y": 330, "text": "La taverne de la grosse Lulette. Les héros y sont interdits d'entrée.", "desc": "lieux-ch-couronne-brisee.html"}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -58,6 +58,7 @@ for (const p of M.places) {
 </script><h2>Les lieux de la ville</h2>
 <ul class=cards>
 <li><a href="lieux-ch-couronne-brisee.html">Taverne de la Couronne Brisée</a></li>
+<li><a href="carte-tour-epharel.html">La tour d&#x27;Epharel</a></li>
 </ul>
 </main>
 
