@@ -214,3 +214,5 @@ section.arc.current { padding: 6px 18px 14px; border: 1px solid var(--accent); b
 blockquote { margin: 18px 0; padding: 10px 18px; border-left: 3px solid var(--accent); background: var(--paper); font-style: italic; border-radius: 0 8px 8px 0; }
 blockquote p { margin: 6px 0; }
 blockquote p:last-child { text-align: right; font-style: normal; color: var(--muted); }
+.strip.even { grid-template-columns: repeat(var(--n), 1fr); }
+@media (max-width: 560px) { .strip.even { grid-template-columns: repeat(2, 1fr); } }
