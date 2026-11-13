@@ -215,3 +215,4 @@ blockquote p { margin: 6px 0; }
 blockquote p:last-child { text-align: right; font-style: normal; color: var(--muted); }
 .strip.even { grid-template-columns: repeat(var(--n), 1fr); }
 @media (max-width: 560px) { .strip.even { grid-template-columns: repeat(2, 1fr); } }
+.home-cards { margin-top: 32px; }
