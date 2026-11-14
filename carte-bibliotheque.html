@@ -82,10 +82,19 @@ for (const p of M.places) {
   const list = p.dead.map(c => '<a href="' + c.href + '">' + c.name + '</a> <small>(' + c.how + ')</small>').join('<br>');
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
+// The layers chosen by the reader are kept from one map to the next (in this browser only).
+let shown = {'Personnages': true, 'Morts': false};
+try { Object.assign(shown, JSON.parse(localStorage.getItem('map-layers') || '{}')); } catch (e) {}
 const overlays = {};
-if (Object.keys(people._layers).length) { people.addTo(map); overlays['Personnages'] = people; }
-if (Object.keys(dead._layers).length) overlays['Morts'] = dead;
+if (Object.keys(people._layers).length) { overlays['Personnages'] = people; if (shown['Personnages']) people.addTo(map); }
+if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
 if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
+function remember(e, on) {
+  shown[e.name] = on;
+  try { localStorage.setItem('map-layers', JSON.stringify(shown)); } catch (err) {}
+}
+map.on('overlayadd', e => remember(e, true));
+map.on('overlayremove', e => remember(e, false));
 </script>
 <nav class="prev-next"><a href="lieux-bp-maison-forte.html">← Maison Forte</a><span></span><a href="carte-rue-des-tourelles.html">Rue des Tourelles →</a></nav>
 </main>
