@@ -34,7 +34,7 @@
 <div id="map" style="aspect-ratio: 1440 / 985"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel", "desc": "carte-tour-epharel.html"}, {"name": "Taverne de la Couronne Brisée", "x": 860, "y": 330, "text": "La taverne de la grosse Lulette. Les héros y sont interdits d'entrée.", "desc": "lieux-ch-couronne-brisee.html", "people": [{"name": "La grosse Lulette", "href": "pnj-grosse-lulette.html", "img": "img/thumb-inline-la-grosse-lulette.jpg?v=0536e1c5", "initials": ""}, {"name": "Polia", "href": "pnj-polia.html", "img": "img/thumb-inline-polia-barmaid.jpg?v=f2d542be", "initials": ""}]}, {"name": "Chrysophée (toute la ville)", "x": 86, "y": 79, "virtual": true, "text": "", "dead": [{"name": "Le Grand-Maître Odoacre", "href": "pnj-hist-odoacre.html", "img": "", "initials": "O", "how": "mort ici"}, {"name": "Offrid de Malvern", "href": "pnj-hist-offrid-de-malvern.html", "img": "", "initials": "OM", "how": "mort ici"}, {"name": "Voder l'Impétueux", "href": "pnj-hist-voder-l-impetueux.html", "img": "", "initials": "VI", "how": "mort ici"}]}]};
+const M = {"w": 1440, "h": 985, "places": [{"name": "La tour d'Epharel", "x": 673, "y": 128, "text": "Une tour de l'enceinte nord, où le démon Epharel était prisonnier.", "map": "tour-epharel", "desc": "carte-tour-epharel.html"}, {"name": "Taverne de la Couronne Brisée", "x": 860, "y": 330, "text": "La taverne de la grosse Lulette. Les héros y sont interdits d'entrée.", "desc": "lieux-ch-couronne-brisee.html", "people": [{"name": "La grosse Lulette", "href": "pnj-grosse-lulette.html", "img": "img/thumb-inline-la-grosse-lulette.jpg?v=0536e1c5", "initials": ""}, {"name": "Polia", "href": "pnj-polia.html", "img": "img/thumb-inline-polia-barmaid.jpg?v=f2d542be", "initials": ""}]}, {"name": "Chrysophée (toute la ville)", "x": 720, "y": 492, "virtual": true, "text": "", "dead": [{"name": "Le Grand-Maître Odoacre", "href": "pnj-hist-odoacre.html", "img": "", "initials": "O", "how": "mort ici"}, {"name": "Offrid de Malvern", "href": "pnj-hist-offrid-de-malvern.html", "img": "", "initials": "OM", "how": "mort ici"}, {"name": "Voder l'Impétueux", "href": "pnj-hist-voder-l-impetueux.html", "img": "", "initials": "VI", "how": "mort ici"}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -44,7 +44,7 @@ map.fitBounds(bounds);
 window.addEventListener('resize', () => { map.invalidateSize(); map.fitBounds(bounds); });
 map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
 for (const p of M.places) {
-  if (p.virtual) continue;  // not a place: a group of characters in a corner of a city plan
+  if (p.virtual) continue;  // not a place: a group of characters in the centre of a city plan
   const hasPlan = !!p.map;
   const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
   const marker = L.circleMarker([H - p.y, p.x], {
