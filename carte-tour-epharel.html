@@ -44,6 +44,7 @@ map.fitBounds(bounds);
 window.addEventListener('resize', () => { map.invalidateSize(); map.fitBounds(bounds); });
 map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
 for (const p of M.places) {
+  if (p.virtual) continue;  // not a place: a group of characters in a corner of a city plan
   const hasPlan = !!p.map;
   const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
   const marker = L.circleMarker([H - p.y, p.x], {
