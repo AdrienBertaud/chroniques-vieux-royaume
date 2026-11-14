@@ -239,6 +239,5 @@ nav.prev-next { clear: both; }
 .dead-icon img { filter: grayscale(1); }
 .dead-icon span { background: #444; }
 .dead-icon b { width: 20px; height: 28px; margin-right: 6px; color: #444; font: 700 20px/28px Georgia, serif; text-shadow: 0 0 3px #fff; }
-.library-note { clear: both; font-size: .9em; font-style: italic; opacity: .85; margin-top: 2em; }
 ul.library { list-style: none; padding-left: 0; }
 ul.library li { margin: .3em 0; }
