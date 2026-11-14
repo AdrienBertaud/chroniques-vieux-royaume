@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La bibliothèque de l&#x27;Académie des Enregistrements · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=2e643782">
+<link rel="stylesheet" href="style.css?v=23d5f67f">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -58,6 +58,21 @@ for (const p of M.places) {
   if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
   else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
+}
+// Layer "Personnages": round portraits of the characters next to the place where they are now.
+const people = L.layerGroup();
+for (const p of M.places) {
+  if (!p.people) continue;
+  const faces = p.people.slice(0, 3).map(c => c.img
+      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
+  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
+  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+}
+if (Object.keys(people._layers).length) {
+  people.addTo(map);
+  L.control.layers(null, {'Personnages': people}, {collapsed: false}).addTo(map);
 }
 </script>
 <nav class="prev-next"><a href="lieux-bp-maison-forte.html">← Maison Forte</a><span></span><a href="carte-rue-des-tourelles.html">Rue des Tourelles →</a></nav>

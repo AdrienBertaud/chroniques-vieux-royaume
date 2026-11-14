@@ -230,3 +230,9 @@ main:not(.with-side) .strip figure.inline:not(.wide) img, .portrait-row img { he
 figure.portrait { width: auto; }
 figure.portrait img { height: 200px; width: auto; max-width: min(100%, 70vw); }
 nav.prev-next { clear: both; }
+/* Layer "Personnages" on the maps: small round portraits next to a place */
+.people-icon { display: flex; background: none; border: none; }
+.people-icon img, .people-icon span { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--paper);
+  margin-left: -8px; object-fit: cover; background: var(--accent); color: var(--paper);
+  font: 700 11px/24px system-ui, sans-serif; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+.people-icon > :first-child { margin-left: 0; }
