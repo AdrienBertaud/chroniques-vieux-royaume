@@ -242,3 +242,4 @@ nav.prev-next { clear: both; }
 ul.library { list-style: none; padding-left: 0; }
 ul.library li { margin: .3em 0; }
 .book-shelf { font-style: italic; opacity: .85; }
+.library-link a { display: inline-block; padding: .5em 1em; border: 1px solid currentColor; border-radius: 6px; text-decoration: none; font-weight: bold; }
