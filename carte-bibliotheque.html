@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La bibliothèque de l&#x27;Académie des Enregistrements · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=23d5f67f">
+<link rel="stylesheet" href="style.css?v=f0dd5cfe">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -70,10 +70,21 @@ for (const p of M.places) {
   const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
 }
-if (Object.keys(people._layers).length) {
-  people.addTo(map);
-  L.control.layers(null, {'Personnages': people}, {collapsed: false}).addTo(map);
+// Layer "Morts": the dead, where they rest (or where they died). Off at first.
+const dead = L.layerGroup();
+for (const p of M.places) {
+  if (!p.dead) continue;
+  const faces = p.dead.slice(0, 3).map(c => c.img
+      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  const more = p.dead.length > 3 ? '<span>+' + (p.dead.length - 3) + '</span>' : '';
+  const icon = L.divIcon({className: 'people-icon dead-icon', html: '<b>†</b>' + faces + more, iconSize: null, iconAnchor: [-10, -6]});
+  const list = p.dead.map(c => '<a href="' + c.href + '">' + c.name + '</a> <small>(' + c.how + ')</small>').join('<br>');
+  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
+const overlays = {};
+if (Object.keys(people._layers).length) { people.addTo(map); overlays['Personnages'] = people; }
+if (Object.keys(dead._layers).length) overlays['Morts'] = dead;
+if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
 </script>
 <nav class="prev-next"><a href="lieux-bp-maison-forte.html">← Maison Forte</a><span></span><a href="carte-rue-des-tourelles.html">Rue des Tourelles →</a></nav>
 </main>

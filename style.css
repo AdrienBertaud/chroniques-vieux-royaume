@@ -236,3 +236,6 @@ nav.prev-next { clear: both; }
   margin-left: -8px; object-fit: cover; background: var(--accent); color: var(--paper);
   font: 700 11px/24px system-ui, sans-serif; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.4); }
 .people-icon > :first-child { margin-left: 0; }
+.dead-icon img { filter: grayscale(1); }
+.dead-icon span { background: #444; }
+.dead-icon b { width: 20px; height: 28px; margin-right: 6px; color: #444; font: 700 20px/28px Georgia, serif; text-shadow: 0 0 3px #fff; }
