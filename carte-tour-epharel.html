@@ -34,7 +34,7 @@
 <div id="map" style="aspect-ratio: 592 / 1309"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 592, "h": 1309, "places": []};
+const M = {"w": 592, "h": 1309, "places": [{"name": "La tour d'Epharel (toute la ville)", "x": 296, "y": 654, "virtual": true, "text": "", "dead": [{"name": "Leodegar VII", "href": "pnj-leodegar-vii.html", "img": "img/thumb-leodegar-vii-le-roi-idiot.jpg?v=ad9b0e8a", "initials": "", "how": "sépulture"}, {"name": "Silenna", "href": "pnj-silenna.html", "img": "img/thumb-silenna-la-sorciere-rouge.jpg?v=d52f0295", "initials": "", "how": "sépulture"}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
