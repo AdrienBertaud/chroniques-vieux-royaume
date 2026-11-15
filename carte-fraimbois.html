@@ -60,24 +60,24 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-// Four switches: "Vivants" and "Morts" (alive or dead), "Rencontrés" and "Non rencontrés" (met or not met yet).
+// Four switches: "Vivants" and "Morts" (alive or dead), "Vus" and "Autres" (met or not met yet).
 // A character is shown when both its switches are ticked.
-const layersKey = 'map-layers-v7:' + location.pathname;  // v7: switches renamed
-let shown = {'Vivants': true, 'Morts': false, 'Rencontrés': true, 'Non rencontrés': false};  // by default: the living the heroes know
+const layersKey = 'map-layers-v8:' + location.pathname;  // v8: switches renamed « Vus » and « Autres »
+let shown = {'Vivants': true, 'Morts': false, 'Vus': true, 'Autres': false};  // by default: the living the heroes know
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
 const content = L.layerGroup().addTo(map);
 function faces(group) {
   const f = group.slice(0, 3).map(c => c.img ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
   return f + (group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '');
 }
-function keep(c) { return c.unmet ? shown['Non rencontrés'] : shown['Rencontrés']; }
+function keep(c) { return c.unmet ? shown['Autres'] : shown['Vus']; }
 function render() {
   content.clearLayers();
   for (const p of M.places) {
     const living = shown['Vivants'] ? (p.people || []).filter(keep) : [];
     if (living.length) {
       const icon = L.divIcon({className: 'people-icon', html: faces(living), iconSize: null, iconAnchor: [-10, 14]});
-      const list = living.map(c => '<a href="' + c.href + '">' + c.name + '</a>' + (c.unmet ? ' <small>(non rencontré)</small>' : '')).join('<br>');
+      const list = living.map(c => '<a href="' + c.href + '">' + c.name + '</a>' + (c.unmet ? ' <small>(jamais vu)</small>' : '')).join('<br>');
       L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(content);
     }
     const dead = shown['Morts'] ? (p.dead || []).filter(keep) : [];
@@ -91,7 +91,7 @@ function render() {
 const any = M.places.some(p => (p.people || []).length || (p.dead || []).length);
 if (any) {
   const switches = {};
-  for (const name of ['Vivants', 'Morts', 'Rencontrés', 'Non rencontrés']) {
+  for (const name of ['Vivants', 'Morts', 'Vus', 'Autres']) {
     switches[name] = L.layerGroup();
     if (shown[name]) switches[name].addTo(map);
   }
