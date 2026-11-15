@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La région de Fraimbois · Une campagne de jeu de rôle dans le Vieux Royaume</title>
+<link rel="stylesheet" href="style.css?v=2e279ebb">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header><div class="bar">
+<button class="burger" aria-label="Menu" aria-expanded="false"
+  onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+<span class="lines"><span></span><span></span><span></span></span></button></div>
+<nav><a href="index.html">Accueil</a>
+<a href="journal.html">Campagne</a>
+<a href="quetes.html">Quêtes</a>
+<a href="pnj.html">Personnages</a>
+<a href="carte.html" class=active>Carte</a>
+<a href="histoire.html">Lore</a></nav></header>
+<main class="wide">
+<nav class="crumbs"><a href="index.html">Accueil</a> › <a href="carte.html">Carte</a> › <span>La région de Fraimbois</span></nav>
+
+<h1>La région de Fraimbois</h1>
+<p>Le village de Fraimbois et ses environs, dans la vallée de la <a class="auto" href="lieux-listrelle.html">Listrelle</a>. Cliquez sur un lieu pour accéder au contenu associé.</p>
+<section class="place-desc">
+<ul>
+<li>Un village de la <a class="auto" href="lieux-marche-franche.html">Marche Franche</a>, dans la vallée de la <a class="auto" href="lieux-listrelle.html">Listrelle</a>, là où la rivière trace de larges méandres entre les collines de Vieufié.</li>
+<li>Depuis <a class="auto" href="carte-bourg-preux.html">Bourg-Preux</a>, on prend la route du Duché, vers <a class="auto" href="lieux-duche-de-bromael.html">Bromaël</a> et le <a class="auto" href="lieux-canton-vert.html">Canton Vert</a> : un peu moins d'une journée à pied, une demi-journée à cheval.</li>
+<li>Le village est construit à flanc de coteau, exposé au sud, au-dessus de la rivière. La cime des collines est couronnée par une forêt, le Chênois.</li>
+<li>Pas très grand, mais prospère : des chaumières paysannes, et de coquettes maisons de vignerons aux murs de pierres sèches et aux toits d'ardoises. Au centre, la place du pressoir.</li>
+<li>Tout autour s'étendent les vignes du célèbre vin de Fraimbois.</li>
+<li>Aux environs : l'auberge de la Treille, le domaine Ducatore, propriété d'un sénateur de <a class="auto" href="lieux-ciudalia.html">Ciudalia</a>, un <a class="auto" href="lieux-bp-temple-dessechee.html">bosquet du Desséché</a>, l'Arbre de la Dryade, les ruines du Vieux Fraimbois et le marais du Mésaisie.</li>
+<li>En 972 CR, <a class="auto" href="pnj-melanchter.html">Melanchter</a> a écrasé des bandes de pillards d'<a class="auto" href="lieux-ouromagne.html">Ouromagne</a> entre le village de Fraimbois et le monastère de Havreval.</li>
+</ul></section>
+<div id="map" style="aspect-ratio: 887 / 992"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const M = {"w": 887, "h": 992, "places": [{"name": "Le village de Fraimbois", "x": 392, "y": 535, "text": "Le village, à flanc de coteau, au-dessus de la Listrelle.", "map": "fraimbois-village"}, {"name": "Les ruines du Vieux Fraimbois", "x": 596, "y": 283, "text": "Les ruines de l'ancien château des seigneurs de Fraimbois.", "map": "vieux-fraimbois"}, {"name": "Le marais du Mésaisie", "x": 720, "y": 278, "text": "Un marais, au-delà des ruines du Vieux Fraimbois.", "map": "mesaisie"}, {"name": "Le domaine Ducatore", "x": 262, "y": 532, "text": "Le domaine d'un sénateur de Ciudalia, au milieu des vignes."}, {"name": "Le bosquet du Desséché", "x": 397, "y": 677, "text": "Le petit cimetière du village, entre les vignes et la rivière."}, {"name": "L'Arbre de la Dryade", "x": 516, "y": 522, "text": "Un arbre-fée, à la lisière du Chênois."}, {"name": "Le gué de Sauvenière", "x": 148, "y": 510, "text": "Le gué de la route du Duché, vers Bromaël et le Canton Vert."}, {"name": "Le Chênois", "x": 397, "y": 398, "text": "La forêt qui couronne les collines au-dessus du village."}]};
+const W = M.w, H = M.h;
+const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
+const bounds = [[0, 0], [H, W]];
+L.imageOverlay('carte-fraimbois.jpg', bounds).addTo(map);
+map.fitBounds(bounds);
+// Keep the whole map visible when the window size changes (phone rotation, resize).
+window.addEventListener('resize', () => { map.invalidateSize(); map.fitBounds(bounds); });
+map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
+for (const p of M.places) {
+  if (p.virtual) continue;  // not a place: a group of characters in the centre of a city plan
+  const hasPlan = !!p.map;
+  const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
+  const marker = L.circleMarker([H - p.y, p.x], {
+      radius: 8, color: '#7a1f1f', weight: 2,
+      fillColor: '#f2d27a', fillOpacity: 0.9})
+    .addTo(map)
+    .bindTooltip(p.name);
+  // A click opens the description of the place; if there is none, its plan; else a bubble.
+  if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
+  else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
+  else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
+}
+// Layer "Vivants": round portraits of the characters next to the place where they are now.
+const people = L.layerGroup();
+for (const p of M.places) {
+  if (!p.people) continue;
+  const faces = p.people.slice(0, 3).map(c => c.img
+      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
+  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
+  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+}
+// Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
+const dead = L.layerGroup();
+for (const p of M.places) {
+  if (!p.dead) continue;
+  const faces = p.dead.slice(0, 3).map(c => c.img
+      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  const more = p.dead.length > 3 ? '<span>+' + (p.dead.length - 3) + '</span>' : '';
+  const icon = L.divIcon({className: 'people-icon dead-icon', html: '<b>†</b>' + faces + more, iconSize: null, iconAnchor: [-10, -6]});
+  const list = p.dead.map(c => '<a href="' + c.href + '">' + c.name + '</a> <small>(' + c.how + ')</small>').join('<br>');
+  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
+}
+// Each map remembers its own layer choice (in this browser only), independently of the other maps.
+const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
+let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
+if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
+const overlays = {};
+if (Object.keys(people._layers).length) { overlays['Vivants'] = people; if (shown['Vivants']) people.addTo(map); }
+if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
+if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
+function remember(e, on) {
+  shown[e.name] = on;
+  try { localStorage.setItem(layersKey, JSON.stringify(shown)); } catch (err) {}
+}
+map.on('overlayadd', e => remember(e, true));
+map.on('overlayremove', e => remember(e, false));
+</script>
+<nav class="prev-next"><a href="lieux-chateau-de-valombre.html">← Château de Valombre</a><span></span><a href="carte-bourg-preux.html">Bourg-Preux →</a></nav>
+</main>
+</body>
+</html>
