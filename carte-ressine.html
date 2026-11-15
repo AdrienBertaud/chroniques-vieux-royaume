@@ -25,9 +25,9 @@
 <p>Le royaume insulaire de Ressine. Cliquez sur un lieu pour accéder au contenu associé.</p>
 <section class="place-desc">
 <ul>
-<li>Royaume insulaire de la mer Erridienne, au nord-est. Sa ville principale est Elyssa.</li>
-<li>L'archipel compte plusieurs îles et villes : Elyssa, <a class="auto" href="lieux-re-sepherais.html">Sepheraïs</a>, Cyparissa, Lasaïa, Rubiza, Qir, ainsi que les îles Aetées, à l'autre bout de l'archipel.</li>
-<li>La <a class="auto" href="lieux-re-grande-bibliotheque-elyssa.html">Grande Bibliothèque</a> d'Elyssa garde des textes anciens et des traités de <a class="auto" href="magie-10-magie-vive.html">magie vive</a>. Voir <a href="lieux-re-grande-bibliotheque-elyssa.html">La Grande Bibliothèque d'Elyssa</a>.</li>
+<li>Royaume insulaire de la mer Erridienne, au nord-est. Sa ville principale est <a class="auto" href="lieux-re-elyssa.html">Elyssa</a>.</li>
+<li>L'archipel compte plusieurs îles et villes : <a class="auto" href="lieux-re-elyssa.html">Elyssa</a>, <a class="auto" href="lieux-re-sepherais.html">Sepheraïs</a>, <a class="auto" href="lieux-re-cyparissa.html">Cyparissa</a>, Lasaïa, Rubiza, Qir, ainsi que les îles Aetées, à l'autre bout de l'archipel.</li>
+<li>La <a class="auto" href="lieux-re-grande-bibliotheque-elyssa.html">Grande Bibliothèque</a> d'<a class="auto" href="lieux-re-elyssa.html">Elyssa</a> garde des textes anciens et des traités de <a class="auto" href="magie-10-magie-vive.html">magie vive</a>. Voir <a href="lieux-re-grande-bibliotheque-elyssa.html">La Grande Bibliothèque d'Elyssa</a>.</li>
 <li>Rival de <a class="auto" href="lieux-ciudalia.html">Ciudalia</a> sur mer. Les pirates y trouvent refuge.</li>
 <li>A signé avec <a class="auto" href="lieux-ciudalia.html">Ciudalia</a> des accords commerciaux renforcés.</li>
 <li><a class="auto" href="heros-ali-pashino.html">Ali Pashino</a> en est originaire. <a class="auto" href="heros-kaelis.html">Kaelis</a> vient d'au-delà, loin à l'Est.</li>
@@ -36,7 +36,7 @@
 <div id="map" style="aspect-ratio: 699 / 489"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 699, "h": 489, "places": [{"name": "Île de Sepheraïs", "x": 335, "y": 300, "text": "Le jardin de Chamach, le Dieu Brillant, gardé par le sphinx Amraphel.", "desc": "lieux-re-sepherais.html"}, {"name": "La Grande Bibliothèque d'Elyssa", "x": 395, "y": 362, "text": "À Elyssa, la capitale. Textes anciens et traités de magie vive.", "desc": "lieux-re-grande-bibliotheque-elyssa.html"}]};
+const M = {"w": 699, "h": 489, "places": [{"name": "Île de Sepheraïs", "x": 335, "y": 300, "text": "Le jardin de Chamach, le Dieu Brillant, gardé par le sphinx Amraphel.", "desc": "lieux-re-sepherais.html"}, {"name": "La Grande Bibliothèque d'Elyssa", "x": 395, "y": 362, "text": "À Elyssa, la capitale. Textes anciens et traités de magie vive.", "desc": "lieux-re-grande-bibliotheque-elyssa.html"}, {"name": "Elyssa", "x": 372, "y": 392, "text": "La capitale de Ressine, où réside le Chah.", "desc": "lieux-re-elyssa.html", "people": [{"name": "Atalya", "href": "pnj-atalya.html", "img": "", "initials": "A"}, {"name": "Dame Vertu", "href": "pnj-dame-vertu.html", "img": "", "initials": "V"}, {"name": "Hannon", "href": "pnj-hannon-guet.html", "img": "", "initials": "H"}, {"name": "Zemira", "href": "pnj-zemira.html", "img": "", "initials": "Z"}]}, {"name": "Cyparissa", "x": 215, "y": 268, "text": "Une île au petit port, autour d'une lagune.", "desc": "lieux-re-cyparissa.html", "people": [{"name": "Basim", "href": "pnj-basim-aubergiste.html", "img": "", "initials": "B"}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -98,6 +98,8 @@ map.on('overlayadd', e => remember(e, true));
 map.on('overlayremove', e => remember(e, false));
 </script><h2>Les lieux de l'archipel</h2>
 <ul class=cards>
+<li><a href="lieux-re-elyssa.html">Elyssa</a></li>
+<li><a href="lieux-re-cyparissa.html">Cyparissa</a></li>
 <li><a href="lieux-re-sepherais.html">Île de Sepheraïs</a></li>
 <li><a href="lieux-re-grande-bibliotheque-elyssa.html">La Grande Bibliothèque d&#x27;Elyssa</a></li>
 </ul>
