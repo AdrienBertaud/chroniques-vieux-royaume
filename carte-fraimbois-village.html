@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le village de Fraimbois · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=2e279ebb">
+<link rel="stylesheet" href="style.css?v=51f62c70">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -50,7 +50,7 @@
 <div id="map" style="aspect-ratio: 1261 / 959"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1261, "h": 959, "places": [{"name": "Le temple du Resplendissant de Fraimbois", "x": 530, "y": 189, "text": "Une tour trapue où brûle un feu nuit et jour.", "desc": "lieux-fr-temple-resplendissant.html", "people": [{"name": "Le prieur Ragnacaire", "href": "pnj-ragnacaire.html", "img": "", "initials": "PR"}]}, {"name": "Le négoce en vins Goulet", "x": 303, "y": 378, "text": "La plus vaste bâtisse du village, avec sa barrique pour enseigne.", "desc": "lieux-fr-negoce-goulet.html", "people": [{"name": "Gondebaud Goulet", "href": "pnj-gondebaud-goulet.html", "img": "", "initials": "GG"}]}, {"name": "Les écuries Thibert", "x": 662, "y": 404, "text": "Les écuries du bourgmestre, marchand de chevaux.", "desc": "lieux-fr-ecuries-thibert.html", "people": [{"name": "Pétronille Thibert", "href": "pnj-petronille-thibert.html", "img": "", "initials": "PT"}, {"name": "Le bourgmestre Salvien Thibert", "href": "pnj-salvien-thibert.html", "img": "", "initials": "BS"}]}, {"name": "La forge de Fraimbois", "x": 807, "y": 523, "text": "La forge de Reccared.", "desc": "lieux-fr-forge.html", "people": [{"name": "Reccared le Forgeron", "href": "pnj-reccared.html", "img": "", "initials": "RF"}]}, {"name": "L'auberge de la Treille", "x": 485, "y": 605, "text": "L'auberge du village, à la grappe de raisin.", "desc": "lieux-fr-auberge-de-la-treille.html", "people": [{"name": "Dame Bilichilde Cossard", "href": "pnj-bilichilde-cossard.html", "img": "", "initials": "BC"}, {"name": "Mirliflore Cossard", "href": "pnj-mirliflore-cossard.html", "img": "", "initials": "MC"}]}]};
+const M = {"w": 1261, "h": 959, "places": [{"name": "Le temple du Resplendissant de Fraimbois", "x": 530, "y": 189, "text": "Une tour trapue où brûle un feu nuit et jour.", "desc": "lieux-fr-temple-resplendissant.html", "people": [{"name": "Le prieur Ragnacaire", "href": "pnj-ragnacaire.html", "img": "", "initials": "PR", "unmet": true}]}, {"name": "Le négoce en vins Goulet", "x": 303, "y": 378, "text": "La plus vaste bâtisse du village, avec sa barrique pour enseigne.", "desc": "lieux-fr-negoce-goulet.html", "people": [{"name": "Gondebaud Goulet", "href": "pnj-gondebaud-goulet.html", "img": "", "initials": "GG", "unmet": true}]}, {"name": "Les écuries Thibert", "x": 662, "y": 404, "text": "Les écuries du bourgmestre, marchand de chevaux.", "desc": "lieux-fr-ecuries-thibert.html", "people": [{"name": "Pétronille Thibert", "href": "pnj-petronille-thibert.html", "img": "", "initials": "PT", "unmet": true}, {"name": "Le bourgmestre Salvien Thibert", "href": "pnj-salvien-thibert.html", "img": "", "initials": "BS", "unmet": true}]}, {"name": "La forge de Fraimbois", "x": 807, "y": 523, "text": "La forge de Reccared.", "desc": "lieux-fr-forge.html", "people": [{"name": "Reccared le Forgeron", "href": "pnj-reccared.html", "img": "", "initials": "RF", "unmet": true}]}, {"name": "L'auberge de la Treille", "x": 485, "y": 605, "text": "L'auberge du village, à la grappe de raisin.", "desc": "lieux-fr-auberge-de-la-treille.html", "people": [{"name": "Dame Bilichilde Cossard", "href": "pnj-bilichilde-cossard.html", "img": "", "initials": "BC", "unmet": true}, {"name": "Mirliflore Cossard", "href": "pnj-mirliflore-cossard.html", "img": "", "initials": "MC", "unmet": true}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -74,16 +74,24 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-const people = L.layerGroup();
-for (const p of M.places) {
-  if (!p.people) continue;
-  const faces = p.people.slice(0, 3).map(c => c.img
-      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
-  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
-  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
-  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
-  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+// Two layers of the living: those the heroes know, and those they have not met yet.
+function livingLayer(unmet, anchorY) {
+  const layer = L.layerGroup();
+  for (const p of M.places) {
+    const group = (p.people || []).filter(c => !!c.unmet === unmet);
+    if (!group.length) continue;
+    const faces = group.slice(0, 3).map(c => c.img
+        ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+    const more = group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '';
+    const icon = L.divIcon({className: 'people-icon' + (unmet ? ' unmet-icon' : ''), html: (unmet ? '<b>?</b>' : '') + faces + more,
+                            iconSize: null, iconAnchor: [-10, anchorY]});
+    const list = group.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+    L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(layer);
+  }
+  return layer;
 }
+const people = livingLayer(false, 14);
+const strangers = livingLayer(true, 40);
 // Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
 const dead = L.layerGroup();
 for (const p of M.places) {
@@ -96,12 +104,12 @@ for (const p of M.places) {
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
 // Each map remembers its own layer choice (in this browser only), independently of the other maps.
-const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
-let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+const layersKey = 'map-layers-v5:' + location.pathname;  // v5: living split into known and unknown
+let shown = {'Vivants connus': true, 'Vivants inconnus': false, 'Morts': !/\/carte\.html$/.test(location.pathname)};
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
-if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
 const overlays = {};
-if (Object.keys(people._layers).length) { overlays['Vivants'] = people; if (shown['Vivants']) people.addTo(map); }
+if (Object.keys(people._layers).length) { overlays['Vivants connus'] = people; if (shown['Vivants connus']) people.addTo(map); }
+if (Object.keys(strangers._layers).length) { overlays['Vivants inconnus'] = strangers; if (shown['Vivants inconnus']) strangers.addTo(map); }
 if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
 if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
 function remember(e, on) {

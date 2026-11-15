@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le fort de Wilkür : la section 3 · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=2e279ebb">
+<link rel="stylesheet" href="style.css?v=51f62c70">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
 <div id="map" style="aspect-ratio: 848 / 1169"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 848, "h": 1169, "places": [{"name": "L'entrepôt d'armes", "x": 397, "y": 147, "text": "L'entrepôt où sont rangées les armes des recrues."}, {"name": "Le terrain de tir à l'arc", "x": 217, "y": 387, "text": "Des cibles, le long du mur ouest."}, {"name": "L'arène de lutte", "x": 550, "y": 395, "text": "Une arène ovale entourée de pieux."}, {"name": "Le puits", "x": 375, "y": 542, "text": "Le puits, au centre de la cour."}, {"name": "L'enclos et l'écurie", "x": 567, "y": 733, "text": "L'enclos des chevaux et l'écurie."}, {"name": "La porte de la section 4", "x": 358, "y": 950, "text": "La porte sud, vers la section 4.", "map": "fort-wilkur-4"}, {"name": "Le fort de Wilkür", "x": 424, "y": 584, "virtual": true, "text": "", "people": [{"name": "Valbren", "href": "pnj-valbren.html", "img": "", "initials": "V"}, {"name": "Wilkür", "href": "pnj-wilkur.html", "img": "", "initials": "W"}]}]};
+const M = {"w": 848, "h": 1169, "places": [{"name": "L'entrepôt d'armes", "x": 397, "y": 147, "text": "L'entrepôt où sont rangées les armes des recrues."}, {"name": "Le terrain de tir à l'arc", "x": 217, "y": 387, "text": "Des cibles, le long du mur ouest."}, {"name": "L'arène de lutte", "x": 550, "y": 395, "text": "Une arène ovale entourée de pieux."}, {"name": "Le puits", "x": 375, "y": 542, "text": "Le puits, au centre de la cour."}, {"name": "L'enclos et l'écurie", "x": 567, "y": 733, "text": "L'enclos des chevaux et l'écurie."}, {"name": "La porte de la section 4", "x": 358, "y": 950, "text": "La porte sud, vers la section 4.", "map": "fort-wilkur-4"}, {"name": "Le fort de Wilkür", "x": 424, "y": 584, "virtual": true, "text": "", "people": [{"name": "Valbren", "href": "pnj-valbren.html", "img": "", "initials": "V", "unmet": true}, {"name": "Wilkür", "href": "pnj-wilkur.html", "img": "", "initials": "W", "unmet": true}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -56,16 +56,24 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-const people = L.layerGroup();
-for (const p of M.places) {
-  if (!p.people) continue;
-  const faces = p.people.slice(0, 3).map(c => c.img
-      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
-  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
-  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
-  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
-  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+// Two layers of the living: those the heroes know, and those they have not met yet.
+function livingLayer(unmet, anchorY) {
+  const layer = L.layerGroup();
+  for (const p of M.places) {
+    const group = (p.people || []).filter(c => !!c.unmet === unmet);
+    if (!group.length) continue;
+    const faces = group.slice(0, 3).map(c => c.img
+        ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+    const more = group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '';
+    const icon = L.divIcon({className: 'people-icon' + (unmet ? ' unmet-icon' : ''), html: (unmet ? '<b>?</b>' : '') + faces + more,
+                            iconSize: null, iconAnchor: [-10, anchorY]});
+    const list = group.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+    L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(layer);
+  }
+  return layer;
 }
+const people = livingLayer(false, 14);
+const strangers = livingLayer(true, 40);
 // Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
 const dead = L.layerGroup();
 for (const p of M.places) {
@@ -78,12 +86,12 @@ for (const p of M.places) {
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
 // Each map remembers its own layer choice (in this browser only), independently of the other maps.
-const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
-let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+const layersKey = 'map-layers-v5:' + location.pathname;  // v5: living split into known and unknown
+let shown = {'Vivants connus': true, 'Vivants inconnus': false, 'Morts': !/\/carte\.html$/.test(location.pathname)};
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
-if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
 const overlays = {};
-if (Object.keys(people._layers).length) { overlays['Vivants'] = people; if (shown['Vivants']) people.addTo(map); }
+if (Object.keys(people._layers).length) { overlays['Vivants connus'] = people; if (shown['Vivants connus']) people.addTo(map); }
+if (Object.keys(strangers._layers).length) { overlays['Vivants inconnus'] = strangers; if (shown['Vivants inconnus']) strangers.addTo(map); }
 if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
 if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
 function remember(e, on) {

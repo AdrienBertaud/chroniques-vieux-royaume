@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gué-Brisé · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=2e279ebb">
+<link rel="stylesheet" href="style.css?v=51f62c70">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
 <div id="map" style="aspect-ratio: 1004 / 777"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1004, "h": 777, "places": [{"name": "La place forte de l'île", "x": 810, "y": 237, "text": "Les ruines de la place forte, sur l'île. Le repaire d'Eliah et de ses brutes."}, {"name": "La place de l'arbre", "x": 502, "y": 402, "text": "La place ronde du village, autour d'un grand arbre."}, {"name": "La maison commune de Gué-Brisé", "x": 552, "y": 368, "text": "Un ancien poste de garde, trapu, aux portes bardées de fer. Le bailli y vit."}, {"name": "Le bac", "x": 581, "y": 470, "text": "Les restes du pont, et l'embarcadère du passeur."}, {"name": "Gué-Brisé", "x": 502, "y": 388, "virtual": true, "text": "", "people": [{"name": "Le bailli de Gué-Brisé", "href": "pnj-bailli-gue-brise.html", "img": "", "initials": "GB"}, {"name": "Eliah", "href": "pnj-eliah.html", "img": "", "initials": "E"}, {"name": "Jérémie le passeur", "href": "pnj-jeremie-passeur.html", "img": "", "initials": "JP"}, {"name": "Madrague l'érudit", "href": "pnj-madrague.html", "img": "", "initials": "MÉ"}]}]};
+const M = {"w": 1004, "h": 777, "places": [{"name": "La place forte de l'île", "x": 810, "y": 237, "text": "Les ruines de la place forte, sur l'île. Le repaire d'Eliah et de ses brutes."}, {"name": "La place de l'arbre", "x": 502, "y": 402, "text": "La place ronde du village, autour d'un grand arbre."}, {"name": "La maison commune de Gué-Brisé", "x": 552, "y": 368, "text": "Un ancien poste de garde, trapu, aux portes bardées de fer. Le bailli y vit."}, {"name": "Le bac", "x": 581, "y": 470, "text": "Les restes du pont, et l'embarcadère du passeur."}, {"name": "Gué-Brisé", "x": 502, "y": 388, "virtual": true, "text": "", "people": [{"name": "Le bailli de Gué-Brisé", "href": "pnj-bailli-gue-brise.html", "img": "", "initials": "GB", "unmet": true}, {"name": "Eliah", "href": "pnj-eliah.html", "img": "", "initials": "E", "unmet": true}, {"name": "Jérémie le passeur", "href": "pnj-jeremie-passeur.html", "img": "", "initials": "JP", "unmet": true}, {"name": "Madrague l'érudit", "href": "pnj-madrague.html", "img": "", "initials": "MÉ", "unmet": true}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -58,16 +58,24 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-const people = L.layerGroup();
-for (const p of M.places) {
-  if (!p.people) continue;
-  const faces = p.people.slice(0, 3).map(c => c.img
-      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
-  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
-  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
-  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
-  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+// Two layers of the living: those the heroes know, and those they have not met yet.
+function livingLayer(unmet, anchorY) {
+  const layer = L.layerGroup();
+  for (const p of M.places) {
+    const group = (p.people || []).filter(c => !!c.unmet === unmet);
+    if (!group.length) continue;
+    const faces = group.slice(0, 3).map(c => c.img
+        ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+    const more = group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '';
+    const icon = L.divIcon({className: 'people-icon' + (unmet ? ' unmet-icon' : ''), html: (unmet ? '<b>?</b>' : '') + faces + more,
+                            iconSize: null, iconAnchor: [-10, anchorY]});
+    const list = group.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+    L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(layer);
+  }
+  return layer;
 }
+const people = livingLayer(false, 14);
+const strangers = livingLayer(true, 40);
 // Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
 const dead = L.layerGroup();
 for (const p of M.places) {
@@ -80,12 +88,12 @@ for (const p of M.places) {
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
 // Each map remembers its own layer choice (in this browser only), independently of the other maps.
-const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
-let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+const layersKey = 'map-layers-v5:' + location.pathname;  // v5: living split into known and unknown
+let shown = {'Vivants connus': true, 'Vivants inconnus': false, 'Morts': !/\/carte\.html$/.test(location.pathname)};
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
-if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
 const overlays = {};
-if (Object.keys(people._layers).length) { overlays['Vivants'] = people; if (shown['Vivants']) people.addTo(map); }
+if (Object.keys(people._layers).length) { overlays['Vivants connus'] = people; if (shown['Vivants connus']) people.addTo(map); }
+if (Object.keys(strangers._layers).length) { overlays['Vivants inconnus'] = strangers; if (shown['Vivants inconnus']) strangers.addTo(map); }
 if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
 if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
 function remember(e, on) {

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La région de Fraimbois · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=2e279ebb">
+<link rel="stylesheet" href="style.css?v=51f62c70">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -36,7 +36,7 @@
 <div id="map" style="aspect-ratio: 887 / 992"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 887, "h": 992, "places": [{"name": "Le village de Fraimbois", "x": 392, "y": 535, "text": "Le village, à flanc de coteau, au-dessus de la Listrelle.", "map": "fraimbois-village", "desc": "carte-fraimbois-village.html"}, {"name": "Les ruines du Vieux Fraimbois", "x": 596, "y": 283, "text": "Les ruines de l'ancien château des seigneurs de Fraimbois.", "map": "vieux-fraimbois"}, {"name": "Le marais du Mésaisie", "x": 720, "y": 278, "text": "Un marais, au-delà des ruines du Vieux Fraimbois.", "map": "mesaisie"}, {"name": "Le domaine Ducatore", "x": 262, "y": 532, "text": "La « villa du Ciudalien », domaine d'un sénateur de Ciudalia.", "desc": "lieux-fr-domaine-ducatore.html", "people": [{"name": "Aemilio Mercantori", "href": "pnj-aemilio-mercantori.html", "img": "", "initials": "AM"}, {"name": "Arguis", "href": "pnj-arguis.html", "img": "", "initials": "A"}, {"name": "Sire Morial de Tyburg", "href": "pnj-morial-de-tyburg.html", "img": "", "initials": "MT"}, {"name": "Scipione Vagaperta", "href": "pnj-scipione-vagaperta.html", "img": "", "initials": "SV"}]}, {"name": "Le bosquet du Desséché de Fraimbois", "x": 397, "y": 677, "text": "Le petit cimetière du village, entre les vignes et la rivière.", "desc": "lieux-fr-bosquet-dessechee.html", "people": [{"name": "L'embaumeur Mummole", "href": "pnj-mummole.html", "img": "", "initials": "EM"}]}, {"name": "L'Arbre de la Dryade", "x": 516, "y": 522, "text": "Un arbre-fée, à la lisière du Chênois."}, {"name": "Le gué de Sauvenière", "x": 148, "y": 510, "text": "Le gué de la route du Duché, vers Bromaël et le Canton Vert."}, {"name": "Le Chênois", "x": 397, "y": 398, "text": "La forêt qui couronne les collines au-dessus du village."}, {"name": "Fraimbois (toute la ville)", "x": 444, "y": 496, "virtual": true, "text": "", "people": [{"name": "Dame Bilichilde Cossard", "href": "pnj-bilichilde-cossard.html", "img": "", "initials": "BC"}, {"name": "Gondebaud Goulet", "href": "pnj-gondebaud-goulet.html", "img": "", "initials": "GG"}, {"name": "Mirliflore Cossard", "href": "pnj-mirliflore-cossard.html", "img": "", "initials": "MC"}, {"name": "Pétronille Thibert", "href": "pnj-petronille-thibert.html", "img": "", "initials": "PT"}, {"name": "Le prieur Ragnacaire", "href": "pnj-ragnacaire.html", "img": "", "initials": "PR"}, {"name": "Reccared le Forgeron", "href": "pnj-reccared.html", "img": "", "initials": "RF"}, {"name": "Le bourgmestre Salvien Thibert", "href": "pnj-salvien-thibert.html", "img": "", "initials": "BS"}]}]};
+const M = {"w": 887, "h": 992, "places": [{"name": "Le village de Fraimbois", "x": 392, "y": 535, "text": "Le village, à flanc de coteau, au-dessus de la Listrelle.", "map": "fraimbois-village", "desc": "carte-fraimbois-village.html"}, {"name": "Les ruines du Vieux Fraimbois", "x": 596, "y": 283, "text": "Les ruines de l'ancien château des seigneurs de Fraimbois.", "map": "vieux-fraimbois"}, {"name": "Le marais du Mésaisie", "x": 720, "y": 278, "text": "Un marais, au-delà des ruines du Vieux Fraimbois.", "map": "mesaisie"}, {"name": "Le domaine Ducatore", "x": 262, "y": 532, "text": "La « villa du Ciudalien », domaine d'un sénateur de Ciudalia.", "desc": "lieux-fr-domaine-ducatore.html", "people": [{"name": "Aemilio Mercantori", "href": "pnj-aemilio-mercantori.html", "img": "", "initials": "AM", "unmet": true}, {"name": "Arguis", "href": "pnj-arguis.html", "img": "", "initials": "A", "unmet": true}, {"name": "Sire Morial de Tyburg", "href": "pnj-morial-de-tyburg.html", "img": "", "initials": "MT", "unmet": true}, {"name": "Scipione Vagaperta", "href": "pnj-scipione-vagaperta.html", "img": "", "initials": "SV", "unmet": true}]}, {"name": "Le bosquet du Desséché de Fraimbois", "x": 397, "y": 677, "text": "Le petit cimetière du village, entre les vignes et la rivière.", "desc": "lieux-fr-bosquet-dessechee.html", "people": [{"name": "L'embaumeur Mummole", "href": "pnj-mummole.html", "img": "", "initials": "EM", "unmet": true}]}, {"name": "L'Arbre de la Dryade", "x": 516, "y": 522, "text": "Un arbre-fée, à la lisière du Chênois."}, {"name": "Le gué de Sauvenière", "x": 148, "y": 510, "text": "Le gué de la route du Duché, vers Bromaël et le Canton Vert."}, {"name": "Le Chênois", "x": 397, "y": 398, "text": "La forêt qui couronne les collines au-dessus du village."}, {"name": "Fraimbois (toute la ville)", "x": 444, "y": 496, "virtual": true, "text": "", "people": [{"name": "Dame Bilichilde Cossard", "href": "pnj-bilichilde-cossard.html", "img": "", "initials": "BC", "unmet": true}, {"name": "Gondebaud Goulet", "href": "pnj-gondebaud-goulet.html", "img": "", "initials": "GG", "unmet": true}, {"name": "Mirliflore Cossard", "href": "pnj-mirliflore-cossard.html", "img": "", "initials": "MC", "unmet": true}, {"name": "Pétronille Thibert", "href": "pnj-petronille-thibert.html", "img": "", "initials": "PT", "unmet": true}, {"name": "Le prieur Ragnacaire", "href": "pnj-ragnacaire.html", "img": "", "initials": "PR", "unmet": true}, {"name": "Reccared le Forgeron", "href": "pnj-reccared.html", "img": "", "initials": "RF", "unmet": true}, {"name": "Le bourgmestre Salvien Thibert", "href": "pnj-salvien-thibert.html", "img": "", "initials": "BS", "unmet": true}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -60,16 +60,24 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-const people = L.layerGroup();
-for (const p of M.places) {
-  if (!p.people) continue;
-  const faces = p.people.slice(0, 3).map(c => c.img
-      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
-  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
-  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
-  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
-  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+// Two layers of the living: those the heroes know, and those they have not met yet.
+function livingLayer(unmet, anchorY) {
+  const layer = L.layerGroup();
+  for (const p of M.places) {
+    const group = (p.people || []).filter(c => !!c.unmet === unmet);
+    if (!group.length) continue;
+    const faces = group.slice(0, 3).map(c => c.img
+        ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+    const more = group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '';
+    const icon = L.divIcon({className: 'people-icon' + (unmet ? ' unmet-icon' : ''), html: (unmet ? '<b>?</b>' : '') + faces + more,
+                            iconSize: null, iconAnchor: [-10, anchorY]});
+    const list = group.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+    L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(layer);
+  }
+  return layer;
 }
+const people = livingLayer(false, 14);
+const strangers = livingLayer(true, 40);
 // Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
 const dead = L.layerGroup();
 for (const p of M.places) {
@@ -82,12 +90,12 @@ for (const p of M.places) {
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
 // Each map remembers its own layer choice (in this browser only), independently of the other maps.
-const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
-let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+const layersKey = 'map-layers-v5:' + location.pathname;  // v5: living split into known and unknown
+let shown = {'Vivants connus': true, 'Vivants inconnus': false, 'Morts': !/\/carte\.html$/.test(location.pathname)};
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
-if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
 const overlays = {};
-if (Object.keys(people._layers).length) { overlays['Vivants'] = people; if (shown['Vivants']) people.addTo(map); }
+if (Object.keys(people._layers).length) { overlays['Vivants connus'] = people; if (shown['Vivants connus']) people.addTo(map); }
+if (Object.keys(strangers._layers).length) { overlays['Vivants inconnus'] = strangers; if (shown['Vivants inconnus']) strangers.addTo(map); }
 if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
 if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
 function remember(e, on) {
