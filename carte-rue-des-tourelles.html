@@ -62,50 +62,49 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-// Two layers of the living: those the heroes know, and those they have not met yet.
-function livingLayer(unmet, anchorY) {
-  const layer = L.layerGroup();
-  for (const p of M.places) {
-    const group = (p.people || []).filter(c => !!c.unmet === unmet);
-    if (!group.length) continue;
-    const faces = group.slice(0, 3).map(c => c.img
-        ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
-    const more = group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '';
-    const icon = L.divIcon({className: 'people-icon' + (unmet ? ' unmet-icon' : ''), html: (unmet ? '<b>?</b>' : '') + faces + more,
-                            iconSize: null, iconAnchor: [-10, anchorY]});
-    const list = group.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
-    L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(layer);
-  }
-  return layer;
-}
-const people = livingLayer(false, 14);
-const strangers = livingLayer(true, 40);
-// Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
-const dead = L.layerGroup();
-for (const p of M.places) {
-  if (!p.dead) continue;
-  const faces = p.dead.slice(0, 3).map(c => c.img
-      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
-  const more = p.dead.length > 3 ? '<span>+' + (p.dead.length - 3) + '</span>' : '';
-  const icon = L.divIcon({className: 'people-icon dead-icon', html: '<b>†</b>' + faces + more, iconSize: null, iconAnchor: [-10, -6]});
-  const list = p.dead.map(c => '<a href="' + c.href + '">' + c.name + '</a> <small>(' + c.how + ')</small>').join('<br>');
-  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
-}
-// Each map remembers its own layer choice (in this browser only), independently of the other maps.
-const layersKey = 'map-layers-v5:' + location.pathname;  // v5: living split into known and unknown
-let shown = {'Vivants connus': true, 'Vivants inconnus': false, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+// Four switches: "Vivants" and "Morts" (alive or dead), "Connus" and "Inconnus" (met or not met yet).
+// A character is shown when both its switches are ticked.
+const layersKey = 'map-layers-v6:' + location.pathname;  // v6: four switches
+let shown = {'Vivants': true, 'Morts': false, 'Connus': true, 'Inconnus': false};  // by default: the living the heroes know
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
-const overlays = {};
-if (Object.keys(people._layers).length) { overlays['Vivants connus'] = people; if (shown['Vivants connus']) people.addTo(map); }
-if (Object.keys(strangers._layers).length) { overlays['Vivants inconnus'] = strangers; if (shown['Vivants inconnus']) strangers.addTo(map); }
-if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
-if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
-function remember(e, on) {
-  shown[e.name] = on;
-  try { localStorage.setItem(layersKey, JSON.stringify(shown)); } catch (err) {}
+const content = L.layerGroup().addTo(map);
+function faces(group) {
+  const f = group.slice(0, 3).map(c => c.img ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  return f + (group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '');
 }
-map.on('overlayadd', e => remember(e, true));
-map.on('overlayremove', e => remember(e, false));
+function keep(c) { return c.unmet ? shown['Inconnus'] : shown['Connus']; }
+function render() {
+  content.clearLayers();
+  for (const p of M.places) {
+    const living = shown['Vivants'] ? (p.people || []).filter(keep) : [];
+    if (living.length) {
+      const icon = L.divIcon({className: 'people-icon', html: faces(living), iconSize: null, iconAnchor: [-10, 14]});
+      const list = living.map(c => '<a href="' + c.href + '">' + c.name + '</a>' + (c.unmet ? ' <small>(inconnu)</small>' : '')).join('<br>');
+      L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(content);
+    }
+    const dead = shown['Morts'] ? (p.dead || []).filter(keep) : [];
+    if (dead.length) {
+      const icon = L.divIcon({className: 'people-icon dead-icon', html: '<b>†</b>' + faces(dead), iconSize: null, iconAnchor: [-10, -6]});
+      const list = dead.map(c => '<a href="' + c.href + '">' + c.name + '</a> <small>(' + c.how + ')</small>').join('<br>');
+      L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(content);
+    }
+  }
+}
+const any = M.places.some(p => (p.people || []).length || (p.dead || []).length);
+if (any) {
+  const switches = {};
+  for (const name of ['Vivants', 'Morts', 'Connus', 'Inconnus']) {
+    switches[name] = L.layerGroup();
+    if (shown[name]) switches[name].addTo(map);
+  }
+  L.control.layers(null, switches, {collapsed: false}).addTo(map);
+  map.on('overlayadd overlayremove', e => {
+    shown[e.name] = e.type === 'overlayadd';
+    try { localStorage.setItem(layersKey, JSON.stringify(shown)); } catch (err) {}
+    render();
+  });
+  render();
+}
 </script>
 <nav class="prev-next"><a href="carte-bibliotheque.html">← Académie des Enregistrements</a><span></span><a href="lieux-bp-capitainerie.html">Capitainerie →</a></nav>
 </main>
