@@ -65,6 +65,8 @@ for (const p of M.places) {
 const layersKey = 'map-layers-v9:' + location.pathname;  // v9: switches « Vus » and « Non vus »
 let shown = {'Vivants': true, 'Morts': false, 'Vus': true, 'Non vus': false};  // by default: the living the heroes know
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
+const seenSwitches = false;  // players' site: no « Vus » / « Non vus » switch, all shown
+if (!seenSwitches) { shown['Vus'] = true; shown['Non vus'] = true; }
 const content = L.layerGroup().addTo(map);
 function faces(group) {
   const f = group.slice(0, 3).map(c => c.img ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
@@ -91,7 +93,7 @@ function render() {
 const any = M.places.some(p => (p.people || []).length || (p.dead || []).length);
 if (any) {
   const switches = {};
-  for (const name of ['Vivants', 'Morts', 'Vus', 'Non vus']) {
+  for (const name of seenSwitches ? ['Vivants', 'Morts', 'Vus', 'Non vus'] : ['Vivants', 'Morts']) {
     switches[name] = L.layerGroup();
     if (shown[name]) switches[name].addTo(map);
   }
