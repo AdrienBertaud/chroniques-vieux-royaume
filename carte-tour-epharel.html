@@ -68,7 +68,7 @@ for (const p of M.places) {
   const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
 }
-// Layer "Morts": the dead, where they rest (or where they died). Off at first.
+// Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
 const dead = L.layerGroup();
 for (const p of M.places) {
   if (!p.dead) continue;
@@ -80,8 +80,8 @@ for (const p of M.places) {
   L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
 }
 // Each map remembers its own layer choice (in this browser only), independently of the other maps.
-const layersKey = 'map-layers-v3:' + location.pathname;  // v3: the dead are hidden by default again
-let shown = {'Vivants': true, 'Morts': false};
+const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
+let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
 if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
 const overlays = {};
