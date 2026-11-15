@@ -38,7 +38,7 @@
 <div id="map" style="aspect-ratio: 2400 / 1946"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 2400, "h": 1946, "places": [{"name": "Rue des Tourelles", "x": 1200, "y": 973, "virtual": true, "text": "", "dead": [{"name": "Les hommes hybrides", "href": "pnj-hommes-hybrides.html", "img": "img/thumb-inline-hommes-hybrides.jpg?v=8988135f", "initials": "", "how": "mort ici"}]}]};
+const M = {"w": 2400, "h": 1946, "places": []};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -99,10 +99,6 @@ function remember(e, on) {
 map.on('overlayadd', e => remember(e, true));
 map.on('overlayremove', e => remember(e, false));
 </script>
-<h2 id="personnages">Personnages</h2>
-<ul class=cards>
-<li><a class="with-thumb" href="pnj-hommes-hybrides.html"><img class="mini" src="img/thumb-inline-hommes-hybrides.jpg?v=8988135f" alt="" loading="lazy"><span class="who">Les hommes hybrides †</span></a></li>
-</ul>
 <nav class="prev-next"><a href="carte-bibliotheque.html">← Académie des Enregistrements</a><span></span><a href="lieux-bp-capitainerie.html">Capitainerie →</a></nav>
 </main>
 </body>
