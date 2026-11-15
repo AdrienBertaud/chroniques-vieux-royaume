@@ -23,11 +23,34 @@
 
 <h1>Le village de Fraimbois</h1>
 <p>Le centre du village.</p>
-
+<section class="place-desc">
+<ul>
+<li>Le village est construit à flanc de coteau, exposé au sud, au-dessus de la <a class="auto" href="lieux-listrelle.html">Listrelle</a>. La cime des collines est couronnée par une forêt, le Chênois.</li>
+<li>Pas très grand, mais prospère : des chaumières paysannes à toit de chaume, et de coquettes maisons de vignerons aux murs de pierres sèches et aux toits d'ardoises.</li>
+</ul>
+<h2 id="la-place-du-pressoir">La place du pressoir</h2>
+<ul>
+<li>C'est la place du village, autour de laquelle se groupent les principaux bâtiments. Elle descend en pente douce vers le sud, en partie dallée d'un vieux pavage qui s'enfonce peu à peu sous les feuilles mortes.</li>
+<li>Ombragée de platanes, elle est égayée par une vieille fontaine qui chantonne doucement. Les voyageurs et les palefreniers des écuries Thibert viennent y faire boire leurs chevaux.</li>
+</ul>
+<h2 id="autour-de-la-place">Autour de la place</h2>
+<ul>
+<li><strong>Le <a class="auto" href="lieux-bp-temple-resplendissant.html">temple du Resplendissant</a></strong> : la plus haute bâtisse du village, une tour trapue où brûle un feu nuit et jour. Voir <a href="lieux-fr-temple-resplendissant.html">Le temple du Resplendissant de Fraimbois</a>.</li>
+<li><strong>Le négoce en vins Goulet</strong> : la plus vaste bâtisse de <a class="auto" href="carte-fraimbois.html">Fraimbois</a>, à la barrique suspendue. Voir <a href="lieux-fr-negoce-goulet.html">Le négoce en vins Goulet</a>.</li>
+<li><strong>Les écuries Thibert</strong> : les écuries et la maison du bourgmestre. Voir <a href="lieux-fr-ecuries-thibert.html">Les écuries Thibert</a>.</li>
+<li><strong>La forge</strong> : la forge de <a class="auto" href="pnj-reccared.html">Reccared</a>, au bout de la rue de <a class="auto" href="carte-bourg-preux.html">Bourg-Preux</a>. Voir <a href="lieux-fr-forge.html">La forge de Fraimbois</a>.</li>
+<li><strong>L'<a class="auto" href="lieux-fr-auberge-de-la-treille.html">auberge de la Treille</a></strong> : au bas de la place. Voir <a href="lieux-fr-auberge-de-la-treille.html">L'auberge de la Treille</a>.</li>
+<li>
+<p>Les rues : la rue du Gué part vers l'ouest, la rue de <a class="auto" href="carte-bourg-preux.html">Bourg-Preux</a> vers le sud-est, et le chemin du Chênois monte vers la forêt. (d'après le plan)</p>
+</li>
+<li>
+<p>Voir <a href="lieux-fraimbois.html">Fraimbois</a>.</p>
+</li>
+</ul></section>
 <div id="map" style="aspect-ratio: 1261 / 959"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 1261, "h": 959, "places": []};
+const M = {"w": 1261, "h": 959, "places": [{"name": "Le temple du Resplendissant de Fraimbois", "x": 530, "y": 189, "text": "Une tour trapue où brûle un feu nuit et jour.", "desc": "lieux-fr-temple-resplendissant.html", "people": [{"name": "Le prieur Ragnacaire", "href": "pnj-ragnacaire.html", "img": "", "initials": "PR"}]}, {"name": "Le négoce en vins Goulet", "x": 303, "y": 378, "text": "La plus vaste bâtisse du village, avec sa barrique pour enseigne.", "desc": "lieux-fr-negoce-goulet.html", "people": [{"name": "Gondebaud Goulet", "href": "pnj-gondebaud-goulet.html", "img": "", "initials": "GG"}]}, {"name": "Les écuries Thibert", "x": 662, "y": 404, "text": "Les écuries du bourgmestre, marchand de chevaux.", "desc": "lieux-fr-ecuries-thibert.html", "people": [{"name": "Pétronille Thibert", "href": "pnj-petronille-thibert.html", "img": "", "initials": "PT"}, {"name": "Le bourgmestre Salvien Thibert", "href": "pnj-salvien-thibert.html", "img": "", "initials": "BS"}]}, {"name": "La forge de Fraimbois", "x": 807, "y": 523, "text": "La forge de Reccared.", "desc": "lieux-fr-forge.html", "people": [{"name": "Reccared le Forgeron", "href": "pnj-reccared.html", "img": "", "initials": "RF"}]}, {"name": "L'auberge de la Treille", "x": 485, "y": 605, "text": "L'auberge du village, à la grappe de raisin.", "desc": "lieux-fr-auberge-de-la-treille.html", "people": [{"name": "Dame Bilichilde Cossard", "href": "pnj-bilichilde-cossard.html", "img": "", "initials": "BC"}, {"name": "Mirliflore Cossard", "href": "pnj-mirliflore-cossard.html", "img": "", "initials": "MC"}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -88,6 +111,7 @@ function remember(e, on) {
 map.on('overlayadd', e => remember(e, true));
 map.on('overlayremove', e => remember(e, false));
 </script>
+<nav class="prev-next"><a href="lieux-fr-bosquet-dessechee.html">← Le bosquet du Desséché de Fraimbois</a><span></span><a href="lieux-fr-domaine-ducatore.html">Le domaine Ducatore →</a></nav>
 </main>
 </body>
 </html>

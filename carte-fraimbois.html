@@ -29,14 +29,14 @@
 <li>Depuis <a class="auto" href="carte-bourg-preux.html">Bourg-Preux</a>, on prend la route du Duché, vers <a class="auto" href="lieux-duche-de-bromael.html">Bromaël</a> et le <a class="auto" href="lieux-canton-vert.html">Canton Vert</a> : un peu moins d'une journée à pied, une demi-journée à cheval.</li>
 <li>Le village est construit à flanc de coteau, exposé au sud, au-dessus de la rivière. La cime des collines est couronnée par une forêt, le Chênois.</li>
 <li>Pas très grand, mais prospère : des chaumières paysannes, et de coquettes maisons de vignerons aux murs de pierres sèches et aux toits d'ardoises. Au centre, la place du pressoir.</li>
-<li>Tout autour s'étendent les vignes du célèbre vin de Fraimbois.</li>
-<li>Aux environs : l'auberge de la Treille, le domaine Ducatore, propriété d'un sénateur de <a class="auto" href="lieux-ciudalia.html">Ciudalia</a>, un <a class="auto" href="lieux-bp-temple-dessechee.html">bosquet du Desséché</a>, l'Arbre de la Dryade, les ruines du Vieux Fraimbois et le marais du Mésaisie.</li>
+<li>Tout autour s'étendent les vignes du célèbre <a class="auto" href="religions-34-legende-vin-de-fraimbois.html">vin de Fraimbois</a>.</li>
+<li>Aux environs : l'<a class="auto" href="lieux-fr-auberge-de-la-treille.html">auberge de la Treille</a>, le domaine Ducatore, propriété d'un sénateur de <a class="auto" href="lieux-ciudalia.html">Ciudalia</a>, un <a class="auto" href="lieux-bp-temple-dessechee.html">bosquet du Desséché</a>, l'Arbre de la Dryade, les ruines du Vieux Fraimbois et le marais du Mésaisie.</li>
 <li>En 972 CR, <a class="auto" href="pnj-melanchter.html">Melanchter</a> a écrasé des bandes de pillards d'<a class="auto" href="lieux-ouromagne.html">Ouromagne</a> entre le village de Fraimbois et le monastère de Havreval.</li>
 </ul></section>
 <div id="map" style="aspect-ratio: 887 / 992"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-const M = {"w": 887, "h": 992, "places": [{"name": "Le village de Fraimbois", "x": 392, "y": 535, "text": "Le village, à flanc de coteau, au-dessus de la Listrelle.", "map": "fraimbois-village"}, {"name": "Les ruines du Vieux Fraimbois", "x": 596, "y": 283, "text": "Les ruines de l'ancien château des seigneurs de Fraimbois.", "map": "vieux-fraimbois"}, {"name": "Le marais du Mésaisie", "x": 720, "y": 278, "text": "Un marais, au-delà des ruines du Vieux Fraimbois.", "map": "mesaisie"}, {"name": "Le domaine Ducatore", "x": 262, "y": 532, "text": "Le domaine d'un sénateur de Ciudalia, au milieu des vignes."}, {"name": "Le bosquet du Desséché", "x": 397, "y": 677, "text": "Le petit cimetière du village, entre les vignes et la rivière."}, {"name": "L'Arbre de la Dryade", "x": 516, "y": 522, "text": "Un arbre-fée, à la lisière du Chênois."}, {"name": "Le gué de Sauvenière", "x": 148, "y": 510, "text": "Le gué de la route du Duché, vers Bromaël et le Canton Vert."}, {"name": "Le Chênois", "x": 397, "y": 398, "text": "La forêt qui couronne les collines au-dessus du village."}]};
+const M = {"w": 887, "h": 992, "places": [{"name": "Le village de Fraimbois", "x": 392, "y": 535, "text": "Le village, à flanc de coteau, au-dessus de la Listrelle.", "map": "fraimbois-village", "desc": "carte-fraimbois-village.html"}, {"name": "Les ruines du Vieux Fraimbois", "x": 596, "y": 283, "text": "Les ruines de l'ancien château des seigneurs de Fraimbois.", "map": "vieux-fraimbois"}, {"name": "Le marais du Mésaisie", "x": 720, "y": 278, "text": "Un marais, au-delà des ruines du Vieux Fraimbois.", "map": "mesaisie"}, {"name": "Le domaine Ducatore", "x": 262, "y": 532, "text": "La « villa du Ciudalien », domaine d'un sénateur de Ciudalia.", "desc": "lieux-fr-domaine-ducatore.html", "people": [{"name": "Aemilio Mercantori", "href": "pnj-aemilio-mercantori.html", "img": "", "initials": "AM"}, {"name": "Arguis", "href": "pnj-arguis.html", "img": "", "initials": "A"}, {"name": "Sire Morial de Tyburg", "href": "pnj-morial-de-tyburg.html", "img": "", "initials": "MT"}, {"name": "Scipione Vagaperta", "href": "pnj-scipione-vagaperta.html", "img": "", "initials": "SV"}]}, {"name": "Le bosquet du Desséché de Fraimbois", "x": 397, "y": 677, "text": "Le petit cimetière du village, entre les vignes et la rivière.", "desc": "lieux-fr-bosquet-dessechee.html", "people": [{"name": "L'embaumeur Mummole", "href": "pnj-mummole.html", "img": "", "initials": "EM"}]}, {"name": "L'Arbre de la Dryade", "x": 516, "y": 522, "text": "Un arbre-fée, à la lisière du Chênois."}, {"name": "Le gué de Sauvenière", "x": 148, "y": 510, "text": "Le gué de la route du Duché, vers Bromaël et le Canton Vert."}, {"name": "Le Chênois", "x": 397, "y": 398, "text": "La forêt qui couronne les collines au-dessus du village."}, {"name": "Fraimbois (toute la ville)", "x": 444, "y": 496, "virtual": true, "text": "", "people": [{"name": "Dame Bilichilde Cossard", "href": "pnj-bilichilde-cossard.html", "img": "", "initials": "BC"}, {"name": "Gondebaud Goulet", "href": "pnj-gondebaud-goulet.html", "img": "", "initials": "GG"}, {"name": "Mirliflore Cossard", "href": "pnj-mirliflore-cossard.html", "img": "", "initials": "MC"}, {"name": "Pétronille Thibert", "href": "pnj-petronille-thibert.html", "img": "", "initials": "PT"}, {"name": "Le prieur Ragnacaire", "href": "pnj-ragnacaire.html", "img": "", "initials": "PR"}, {"name": "Reccared le Forgeron", "href": "pnj-reccared.html", "img": "", "initials": "RF"}, {"name": "Le bourgmestre Salvien Thibert", "href": "pnj-salvien-thibert.html", "img": "", "initials": "BS"}]}]};
 const W = M.w, H = M.h;
 const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
 const bounds = [[0, 0], [H, W]];
@@ -96,7 +96,17 @@ function remember(e, on) {
 }
 map.on('overlayadd', e => remember(e, true));
 map.on('overlayremove', e => remember(e, false));
-</script>
+</script><h2>Les lieux de la ville</h2>
+<ul class=cards>
+<li><a href="carte-fraimbois-village.html">Le village de Fraimbois</a></li>
+<li><a href="lieux-fr-temple-resplendissant.html">Le temple du Resplendissant de Fraimbois</a></li>
+<li><a href="lieux-fr-negoce-goulet.html">Le négoce en vins Goulet</a></li>
+<li><a href="lieux-fr-ecuries-thibert.html">Les écuries Thibert</a></li>
+<li><a href="lieux-fr-forge.html">La forge de Fraimbois</a></li>
+<li><a href="lieux-fr-auberge-de-la-treille.html">L&#x27;auberge de la Treille</a></li>
+<li><a href="lieux-fr-domaine-ducatore.html">Le domaine Ducatore</a></li>
+<li><a href="lieux-fr-bosquet-dessechee.html">Le bosquet du Desséché de Fraimbois</a></li>
+</ul>
 <nav class="prev-next"><a href="lieux-chateau-de-valombre.html">← Château de Valombre</a><span></span><a href="carte-bourg-preux.html">Bourg-Preux →</a></nav>
 </main>
 </body>
