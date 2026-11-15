@@ -25,7 +25,7 @@
 <p>La section ouest du fort de Wilkür, avec la sortie vers l&#x27;extérieur.</p>
 <section class="place-desc">
 <ul>
-<li>Un fort à la lisière sud du <a class="auto" href="lieux-foret-du-fauvois.html">Fauvois</a>, au bord des <a class="auto" href="lieux-landes-grises.html">Landes Grises</a>.</li>
+<li>Un fort à la lisière sud des forêts de l'<a class="auto" href="lieux-ouromagne.html">Ouromagne</a>, aux confins du duché de <a class="auto" href="lieux-duche-de-bromael.html">Bromaël</a>.</li>
 <li>Un sombre mage, Wilkür, y entraîne des gobelins, des orques et des trolls pour en faire ses mercenaires.</li>
 <li>Le fort est divisé en neuf sections fortifiées, en carré de trois sur trois, reliées par des portes et des couloirs souterrains. Plans : la section 3 (nord-ouest) et la section 4 (ouest).</li>
 </ul></section>
@@ -56,24 +56,24 @@ for (const p of M.places) {
   else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
 }
 // Layer "Vivants": round portraits of the characters next to the place where they are now.
-// Four switches: "Vivants" and "Morts" (alive or dead), "Connus" and "Inconnus" (met or not met yet).
+// Four switches: "Vivants" and "Morts" (alive or dead), "Rencontrés" and "Non rencontrés" (met or not met yet).
 // A character is shown when both its switches are ticked.
-const layersKey = 'map-layers-v6:' + location.pathname;  // v6: four switches
-let shown = {'Vivants': true, 'Morts': false, 'Connus': true, 'Inconnus': false};  // by default: the living the heroes know
+const layersKey = 'map-layers-v7:' + location.pathname;  // v7: switches renamed
+let shown = {'Vivants': true, 'Morts': false, 'Rencontrés': true, 'Non rencontrés': false};  // by default: the living the heroes know
 try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
 const content = L.layerGroup().addTo(map);
 function faces(group) {
   const f = group.slice(0, 3).map(c => c.img ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
   return f + (group.length > 3 ? '<span>+' + (group.length - 3) + '</span>' : '');
 }
-function keep(c) { return c.unmet ? shown['Inconnus'] : shown['Connus']; }
+function keep(c) { return c.unmet ? shown['Non rencontrés'] : shown['Rencontrés']; }
 function render() {
   content.clearLayers();
   for (const p of M.places) {
     const living = shown['Vivants'] ? (p.people || []).filter(keep) : [];
     if (living.length) {
       const icon = L.divIcon({className: 'people-icon', html: faces(living), iconSize: null, iconAnchor: [-10, 14]});
-      const list = living.map(c => '<a href="' + c.href + '">' + c.name + '</a>' + (c.unmet ? ' <small>(inconnu)</small>' : '')).join('<br>');
+      const list = living.map(c => '<a href="' + c.href + '">' + c.name + '</a>' + (c.unmet ? ' <small>(non rencontré)</small>' : '')).join('<br>');
       L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(content);
     }
     const dead = shown['Morts'] ? (p.dead || []).filter(keep) : [];
@@ -87,7 +87,7 @@ function render() {
 const any = M.places.some(p => (p.people || []).length || (p.dead || []).length);
 if (any) {
   const switches = {};
-  for (const name of ['Vivants', 'Morts', 'Connus', 'Inconnus']) {
+  for (const name of ['Vivants', 'Morts', 'Rencontrés', 'Non rencontrés']) {
     switches[name] = L.layerGroup();
     if (shown[name]) switches[name].addTo(map);
   }
