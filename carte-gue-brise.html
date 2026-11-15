@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gué-Brisé · Une campagne de jeu de rôle dans le Vieux Royaume</title>
+<link rel="stylesheet" href="style.css?v=2e279ebb">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header><div class="bar">
+<button class="burger" aria-label="Menu" aria-expanded="false"
+  onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+<span class="lines"><span></span><span></span><span></span></span></button></div>
+<nav><a href="index.html">Accueil</a>
+<a href="journal.html">Campagne</a>
+<a href="quetes.html">Quêtes</a>
+<a href="pnj.html">Personnages</a>
+<a href="carte.html" class=active>Carte</a>
+<a href="histoire.html">Lore</a></nav></header>
+<main class="wide">
+<nav class="crumbs"><a href="index.html">Accueil</a> › <a href="carte.html">Carte</a> › <span>Gué-Brisé</span></nav>
+
+<h1>Gué-Brisé</h1>
+<p>Le village de Gué-Brisé, sur la Serpentine.</p>
+<section class="place-desc">
+<ul>
+<li>Un village isolé des <a class="auto" href="lieux-landes-grises.html">Landes Grises</a>, sur la Serpentine, non loin des ruines de <a class="auto" href="lieux-malvern.html">Malvern</a>.</li>
+<li>La rivière est profonde et rapide, ses berges marécageuses cachent des sables mouvants. Le pont a été abattu il y a quinze ans, pendant une attaque de brigands : un passeur fait traverser en bac.</li>
+<li>Au cœur du village, une place ronde avec un grand arbre, et une maison commune trapue, ancien poste de garde, aux portes bardées de fer.</li>
+<li>Sur une île de la rivière se dressent les ruines d'une place forte, rachetée par un aristocrate détesté, Eliah, qui rançonne le village avec ses brutes.</li>
+<li>On raconte qu'il y a quinze ans, une machine de fer a sauvé le village des brigands.</li>
+</ul></section>
+<div id="map" style="aspect-ratio: 1004 / 777"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const M = {"w": 1004, "h": 777, "places": [{"name": "La place forte de l'île", "x": 810, "y": 237, "text": "Les ruines de la place forte, sur l'île. Le repaire d'Eliah et de ses brutes."}, {"name": "La place de l'arbre", "x": 502, "y": 402, "text": "La place ronde du village, autour d'un grand arbre."}, {"name": "La maison commune de Gué-Brisé", "x": 552, "y": 368, "text": "Un ancien poste de garde, trapu, aux portes bardées de fer. Le bailli y vit."}, {"name": "Le bac", "x": 581, "y": 470, "text": "Les restes du pont, et l'embarcadère du passeur."}, {"name": "Gué-Brisé", "x": 502, "y": 388, "virtual": true, "text": "", "people": [{"name": "Le bailli de Gué-Brisé", "href": "pnj-bailli-gue-brise.html", "img": "", "initials": "GB"}, {"name": "Eliah", "href": "pnj-eliah.html", "img": "", "initials": "E"}, {"name": "Jérémie le passeur", "href": "pnj-jeremie-passeur.html", "img": "", "initials": "JP"}, {"name": "Madrague l'érudit", "href": "pnj-madrague.html", "img": "", "initials": "MÉ"}]}]};
+const W = M.w, H = M.h;
+const map = L.map('map', {crs: L.CRS.Simple, minZoom: -4, maxZoom: 3, zoomSnap: 0, zoomDelta: 0.5});
+const bounds = [[0, 0], [H, W]];
+L.imageOverlay('carte-gue-brise.jpg', bounds).addTo(map);
+map.fitBounds(bounds);
+// Keep the whole map visible when the window size changes (phone rotation, resize).
+window.addEventListener('resize', () => { map.invalidateSize(); map.fitBounds(bounds); });
+map.setMaxBounds([[-H * 0.2, -W * 0.2], [H * 1.2, W * 1.2]]);
+for (const p of M.places) {
+  if (p.virtual) continue;  // not a place: a group of characters in the centre of a city plan
+  const hasPlan = !!p.map;
+  const link = hasPlan ? '<br><a href="carte-' + p.map + '.html">Ouvrir le plan →</a>' : '';
+  const marker = L.circleMarker([H - p.y, p.x], {
+      radius: 8, color: '#7a1f1f', weight: 2,
+      fillColor: '#f2d27a', fillOpacity: 0.9})
+    .addTo(map)
+    .bindTooltip(p.name);
+  // A click opens the description of the place; if there is none, its plan; else a bubble.
+  if (p.desc) marker.on('click', () => { window.location.href = p.desc; });
+  else if (hasPlan) marker.on('click', () => { window.location.href = 'carte-' + p.map + '.html'; });
+  else marker.bindPopup('<strong>' + p.name + '</strong><br>' + p.text);
+}
+// Layer "Vivants": round portraits of the characters next to the place where they are now.
+const people = L.layerGroup();
+for (const p of M.places) {
+  if (!p.people) continue;
+  const faces = p.people.slice(0, 3).map(c => c.img
+      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  const more = p.people.length > 3 ? '<span>+' + (p.people.length - 3) + '</span>' : '';
+  const icon = L.divIcon({className: 'people-icon', html: faces + more, iconSize: null, iconAnchor: [-10, 14]});
+  const list = p.people.map(c => '<a href="' + c.href + '">' + c.name + '</a>').join('<br>');
+  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(people);
+}
+// Layer "Morts": the dead, where they rest (or where they died). On at first, except on the main map.
+const dead = L.layerGroup();
+for (const p of M.places) {
+  if (!p.dead) continue;
+  const faces = p.dead.slice(0, 3).map(c => c.img
+      ? '<img src="' + c.img + '" alt="">' : '<span>' + c.initials + '</span>').join('');
+  const more = p.dead.length > 3 ? '<span>+' + (p.dead.length - 3) + '</span>' : '';
+  const icon = L.divIcon({className: 'people-icon dead-icon', html: '<b>†</b>' + faces + more, iconSize: null, iconAnchor: [-10, -6]});
+  const list = p.dead.map(c => '<a href="' + c.href + '">' + c.name + '</a> <small>(' + c.how + ')</small>').join('<br>');
+  L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>† ' + p.name + '</strong><br>' + list).addTo(dead);
+}
+// Each map remembers its own layer choice (in this browser only), independently of the other maps.
+const layersKey = 'map-layers-v4:' + location.pathname;  // v4: the dead are shown by default, except on the main map
+let shown = {'Vivants': true, 'Morts': !/\/carte\.html$/.test(location.pathname)};
+try { Object.assign(shown, JSON.parse(localStorage.getItem(layersKey) || '{}')); } catch (e) {}
+if ('Personnages' in shown) { shown['Vivants'] = shown['Personnages']; delete shown['Personnages']; }  // old name
+const overlays = {};
+if (Object.keys(people._layers).length) { overlays['Vivants'] = people; if (shown['Vivants']) people.addTo(map); }
+if (Object.keys(dead._layers).length) { overlays['Morts'] = dead; if (shown['Morts']) dead.addTo(map); }
+if (Object.keys(overlays).length) L.control.layers(null, overlays, {collapsed: false}).addTo(map);
+function remember(e, on) {
+  shown[e.name] = on;
+  try { localStorage.setItem(layersKey, JSON.stringify(shown)); } catch (err) {}
+}
+map.on('overlayadd', e => remember(e, true));
+map.on('overlayremove', e => remember(e, false));
+</script>
+<h2 id="personnages">Personnages</h2>
+<ul class=cards>
+<li><a class="with-thumb" href="pnj-eliah.html"><span class="mini date initials">E</span><span class="who">Eliah, seigneur de l&#x27;île</span></a></li>
+<li><a class="with-thumb" href="pnj-jeremie-passeur.html"><span class="mini date initials">JP</span><span class="who">Jérémie le passeur</span></a></li>
+<li><a class="with-thumb" href="pnj-bailli-gue-brise.html"><span class="mini date initials">GB</span><span class="who">Le bailli de Gué-Brisé</span></a></li>
+<li><a class="with-thumb" href="pnj-madrague.html"><span class="mini date initials">MÉ</span><span class="who">Madrague l&#x27;érudit</span></a></li>
+</ul>
+<nav class="prev-next"><a href="carte-fraimbois.html">← Fraimbois</a><span></span><a href="lieux-haute-falaise.html">Haute-Falaise →</a></nav>
+</main>
+</body>
+</html>
