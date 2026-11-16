@@ -140,7 +140,7 @@
     function expr() { let v = term(); for (;;) { ws(); const o = src[i]; if (o !== '+' && o !== '-') return v; i++; const w = term(); v = o === '+' ? num(v) + num(w) : num(v) - num(w); } }
     return expr();
   }
-  const show = v => typeof v === 'number' ? v.toLocaleString('fr-FR', {maximumFractionDigits: 3}) : String(v);
+  const show = v => typeof v === 'number' ? (v === 0 ? 0 : v).toLocaleString('fr-FR', {maximumFractionDigits: 3}) : String(v);
   function refresh() {
     cache = {};
     document.querySelectorAll('[data-f]').forEach(el => { el.textContent = show(val('self', el.dataset.f)); });
