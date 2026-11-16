@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiche de Aldaron Vorondil · Une campagne de jeu de rôle dans le Vieux Royaume</title>
+<link rel="stylesheet" href="style.css?v=51f62c70">
+
+</head>
+<body>
+<header><div class="bar">
+<button class="burger" aria-label="Menu" aria-expanded="false"
+  onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+<span class="lines"><span></span><span></span><span></span></span></button></div>
+<nav><a href="index.html">Accueil</a>
+<a href="journal.html">Campagne</a>
+<a href="quetes.html">Quêtes</a>
+<a href="pnj.html" class=active>Personnages</a>
+<a href="carte.html">Carte</a>
+<a href="histoire.html">Lore</a></nav></header>
+<main>
+<style>
+.fiche { border-collapse: collapse; width: 100%; font-size: .95em; }
+.fiche td { border: 1px solid rgba(128,128,128,.25); padding: .25em .4em; vertical-align: top; }
+.fiche tr.head td { font-weight: bold; background: rgba(200,150,60,.15); }
+.fiche tr.blank td { border: none; height: .6em; }
+.fiche td.f { font-weight: bold; text-align: right; }
+.fiche input { width: 5.5em; font: inherit; background: transparent; color: inherit; border: 1px solid rgba(128,128,128,.4); border-radius: 3px; padding: 0 .2em; }
+.fiche-wrap { overflow-x: auto; }
+</style><nav class="crumbs"><a href="index.html">Accueil</a> › <a href="pnj.html">Personnages</a> › <a href="personnages-heros.html">Les héros</a> › <span>Fiche</span></nav>
+<h1>Fiche de Aldaron Vorondil</h1>
+<p>Une copie vivante de la fiche : changez un nombre, les totaux se recalculent. Vos changements restent dans votre navigateur. <button type="button" id="fiche-reset">Revenir à la fiche</button> · <a href="https://docs.google.com/spreadsheets/d/1DmyQRkxf4uARUWNZ-sOHnfMn-g9q37PphnN37z9z6Rw/edit#gid=0" target="_blank" rel="noopener">La fiche originale (Google Sheets)</a></p>
+<div class="fiche-wrap"><table class="fiche">
+<tr class=head><td>Personnage</td><td>Aldaron Vorondil</td><td class="f" data-f="C1"></td><td class="f" data-f="D1"></td><td class="f" data-f="E1"></td><td class="f" data-f="F1"></td></tr>
+<tr><td>Alignement</td><td>Chaotique Bon</td><td class="f" data-f="C2"></td><td class="f" data-f="D2"></td><td></td><td></td></tr>
+<tr class="blank"><td colspan="6"></td></tr>
+<tr class=head><td>Caractéristique</td><td></td><td>Dextérité<br>Force<br>Endurance</td><td>Vitesse<br>Initiative<br>Perception</td><td>Charisme<br>Intelligence<br>Volonté</td><td>Total</td></tr>
+<tr><td>Base (12*3)</td><td></td><td class="f" data-f="C5"></td><td class="f" data-f="D5"></td><td class="f" data-f="E5"></td><td class="f" data-f="F5"></td></tr>
+<tr><td>Race (+2∕-2)</td><td>Semi-elf</td><td><input type="number" step="any" data-c="C6" value="1"></td><td><input type="number" step="any" data-c="D6" value="-2"></td><td><input type="number" step="any" data-c="E6" value="1"></td><td class="f" data-f="F6"></td></tr>
+<tr><td>Classe (+2∕-2)</td><td>Druide</td><td><input type="number" step="any" data-c="C7" value="-2"></td><td><input type="number" step="any" data-c="D7" value="1"></td><td><input type="number" step="any" data-c="E7" value="1"></td><td class="f" data-f="F7"></td></tr>
+<tr><td>Vêtement  (+1/-1)</td><td>Plastron de cuir</td><td><input type="number" step="any" data-c="C8" value="1"></td><td><input type="number" step="any" data-c="D8" value="-1"></td><td></td><td class="f" data-f="F8"></td></tr>
+<tr><td>Objet  (+1/-1)</td><td></td><td></td><td></td><td></td><td class="f" data-f="F9"></td></tr>
+<tr><td>Couvre-chef  (+1/-1)</td><td></td><td></td><td></td><td></td><td class="f" data-f="F10"></td></tr>
+<tr><td>Evolution (+1*N)</td><td></td><td><input type="number" step="any" data-c="C11" value="6"></td><td><input type="number" step="any" data-c="D11" value="2"></td><td><input type="number" step="any" data-c="E11" value="1"></td><td class="f" data-f="F11"></td></tr>
+<tr><td>Modificateurs</td><td></td><td class="f" data-f="C12"></td><td class="f" data-f="D12"></td><td class="f" data-f="E12"></td><td class="f" data-f="F12"></td></tr>
+<tr><td class="f" data-f="A13"></td><td></td><td class="f" data-f="C13"></td><td class="f" data-f="D13"></td><td class="f" data-f="E13"></td><td class="f" data-f="F13"></td></tr>
+<tr><td>Total</td><td></td><td class="f" data-f="C14"></td><td class="f" data-f="D14"></td><td class="f" data-f="E14"></td><td></td></tr>
+<tr><td>Seuil épique (sur d20)</td><td></td><td class="f" data-f="C15"></td><td class="f" data-f="D15"></td><td class="f" data-f="E15"></td><td></td></tr>
+<tr><td>Seuil légendaire</td><td></td><td class="f" data-f="C16"></td><td class="f" data-f="D16"></td><td class="f" data-f="E16"></td><td></td></tr>
+<tr><td>Seuil mythique</td><td></td><td class="f" data-f="C17"></td><td class="f" data-f="D17"></td><td class="f" data-f="E17"></td><td></td></tr>
+<tr class="blank"><td colspan="6"></td></tr>
+<tr><td>Equipement</td><td></td><td></td><td>Quantité</td><td>Poids (kg)</td><td>Total (kg)</td></tr>
+<tr><td>Sous d&#x27;or (monnaie de Bourg-Preux).</td><td></td><td></td><td><input type="number" step="any" data-c="D20" value="785"></td><td><input type="number" step="any" data-c="E20" value="0.005"></td><td class="f" data-f="F20"></td></tr>
+<tr><td>Graine de Hurlophore</td><td></td><td></td><td><input type="number" step="any" data-c="D21" value="20"></td><td><input type="number" step="any" data-c="E21" value="0.001"></td><td class="f" data-f="F21"></td></tr>
+<tr><td>Lettre de recommandation de Spada aupres du sénateur Rapazzoni. </td><td></td><td></td><td><input type="number" step="any" data-c="D22" value="1"></td><td><input type="number" step="any" data-c="E22" value="0.02"></td><td class="f" data-f="F22"></td></tr>
+<tr><td>Placement de 500 SO chez le nain Skirfir Rognellard à 0,5% par mois.</td><td></td><td></td><td><input type="number" step="any" data-c="D23" value="1"></td><td><input type="number" step="any" data-c="E23" value="0.02"></td><td class="f" data-f="F23"></td></tr>
+<tr><td>Ruban de la Lissandière</td><td></td><td></td><td><input type="number" step="any" data-c="D24" value="1"></td><td><input type="number" step="any" data-c="E24" value="0.02"></td><td class="f" data-f="F24"></td></tr>
+<tr><td>Titre de noblesse: Comte du ducher de Bromael</td><td></td><td></td><td><input type="number" step="any" data-c="D25" value="1"></td><td><input type="number" step="any" data-c="E25" value="0.02"></td><td class="f" data-f="F25"></td></tr>
+<tr><td>Copropriété des ruines de Garche et des Landes Grises</td><td></td><td></td><td><input type="number" step="any" data-c="D26" value="1"></td><td><input type="number" step="any" data-c="E26" value="0.02"></td><td class="f" data-f="F26"></td></tr>
+<tr><td>Potion de vérité</td><td></td><td></td><td><input type="number" step="any" data-c="D27" value="1"></td><td><input type="number" step="any" data-c="E27" value="0.02"></td><td class="f" data-f="F27"></td></tr>
+<tr><td>Graine</td><td></td><td></td><td><input type="number" step="any" data-c="D28" value="1"></td><td><input type="number" step="any" data-c="E28" value="0.02"></td><td class="f" data-f="F28"></td></tr>
+<tr><td>Composte</td><td></td><td></td><td><input type="number" step="any" data-c="D29" value="1"></td><td><input type="number" step="any" data-c="E29" value="0.5"></td><td class="f" data-f="F29"></td></tr>
+<tr><td>Eau</td><td></td><td></td><td><input type="number" step="any" data-c="D30" value="1"></td><td><input type="number" step="any" data-c="E30" value="1"></td><td class="f" data-f="F30"></td></tr>
+<tr><td>Couronne de Leomance</td><td></td><td></td><td><input type="number" step="any" data-c="D31" value="1"></td><td><input type="number" step="any" data-c="E31" value="3"></td><td class="f" data-f="F31"></td></tr>
+<tr><td>Rubis qui lie l&#x27;invisible au visible</td><td></td><td></td><td><input type="number" step="any" data-c="D32" value="1"></td><td><input type="number" step="any" data-c="E32" value="0.2"></td><td class="f" data-f="F32"></td></tr>
+<tr class="blank"><td colspan="6"></td></tr>
+<tr><td>Arme</td><td></td><td>Portée (m)</td><td>Dé</td><td>Poids</td><td>Coût (PO)</td></tr>
+<tr><td>Arc court</td><td></td><td><input type="number" step="any" data-c="C35" value="40"></td><td><input type="number" step="any" data-c="D35" value="4"></td><td class="f" data-f="E35"></td><td class="f" data-f="F35"></td></tr>
+<tr><td>Dague</td><td></td><td></td><td><input type="number" step="any" data-c="D36" value="4"></td><td class="f" data-f="E36"></td><td class="f" data-f="F36"></td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="f" data-f="E37"></td><td class="f" data-f="F37"></td></tr>
+<tr class="blank"><td colspan="6"></td></tr>
+<tr><td>Sort</td><td></td><td></td><td></td><td>Durée (min)</td><td>Coût</td></tr>
+<tr><td>Génèrer bruits de la nature.</td><td></td><td></td><td></td><td><input type="number" step="any" data-c="E40" value="10"></td><td><input type="number" step="any" data-c="F40" value="1"></td></tr>
+<tr><td>Augmentation de DEX +5 pdt de qq à portée.</td><td></td><td></td><td></td><td><input type="number" step="any" data-c="E41" value="10"></td><td><input type="number" step="any" data-c="F41" value="1"></td></tr>
+<tr><td>Accélérer croissance plante, 1 min = 1 an.</td><td></td><td></td><td></td><td><input type="number" step="any" data-c="E42" value="1"></td><td><input type="number" step="any" data-c="F42" value="1"></td></tr>
+<tr><td>Transformer objet naturel en arme magique d16 de dégats.</td><td></td><td></td><td></td><td><input type="number" step="any" data-c="E43" value="10"></td><td><input type="number" step="any" data-c="F43" value="3"></td></tr>
+<tr><td>Transformation en chat ou jaguarondi.</td><td></td><td></td><td></td><td>indéfini</td><td><input type="number" step="any" data-c="F44" value="4"></td></tr>
+<tr><td>Rage, +4 dextérité, 1d4 degat en plus</td><td></td><td></td><td></td><td><input type="number" step="any" data-c="E45" value="10"></td><td><input type="number" step="any" data-c="F45" value="2"></td></tr>
+<tr><td>Savoir faire boisson de potion de vérité (instable, dure 24h)</td><td></td><td></td><td></td><td><input type="number" step="any" data-c="E46" value="60"></td><td><input type="number" step="any" data-c="F46" value="1"></td></tr>
+<tr class="blank"><td colspan="6"></td></tr>
+<tr class=head><td>Background</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Origine</td><td>Né dans le Canton Vert d&#x27;un père elf et d&#x27;une mère humaine.</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Histoire familiale</td><td>Son père elf l&#x27;a instruit a l&#x27;art druidique dans les Cinq Vallées.</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Evènements anciens</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Objectif de vie</td><td>(Ecole de druide) Devenir aussi badasse qu&#x27;Azog</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Evènements récents</td><td>A délivré Spada, le fils du sénateur Rapazzoni, que le parti belliciste de Ciudalia voulait faire chanter.</td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<script>
+(function () {
+  const D = {"self": {"A1": "Personnage", "B1": "Aldaron Vorondil", "C1": "=Template!C2", "D1": "=Template!D2", "E1": "=Template!E2", "F1": "=Template!F2", "A2": "Alignement", "B2": "Chaotique Bon", "C2": "=ROUND(SUM(E19:E34),0)", "D2": "=ROUND(SUM(E34:E39),0)", "A4": "Caractéristique", "C4": "Dextérité\nForce\nEndurance", "D4": "Vitesse\nInitiative\nPerception", "E4": "Charisme\nIntelligence\nVolonté", "F4": "Total", "A5": "Base (12*3)", "C5": "=Template!C6", "D5": "=Template!D6", "E5": "=Template!E6", "F5": "=SUM(C5:E5)", "A6": "Race (+2∕-2)", "B6": "Semi-elf", "C6": 1.0, "D6": -2.0, "E6": 1.0, "F6": "=SUM(C6:E6)", "A7": "Classe (+2∕-2)", "B7": "Druide", "C7": -2.0, "D7": 1.0, "E7": 1.0, "F7": "=SUM(C7:E7)", "A8": "Vêtement  (+1/-1)", "B8": "Plastron de cuir", "C8": 1.0, "D8": -1.0, "F8": "=SUM(C8:E8)", "A9": "Objet  (+1/-1)", "F9": "=SUM(C9:E9)", "A10": "Couvre-chef  (+1/-1)", "F10": "=SUM(C10:E10)", "A11": "Evolution (+1*N)", "C11": 6.0, "D11": 2.0, "E11": 1.0, "F11": "=SUM(C11:E11)", "A12": "Modificateurs", "C12": "=-C2", "D12": "=-D2", "E12": "=-E2", "F12": "=SUM(C12:E12)", "A13": "=F1", "C13": "=-ROUND($F$2/3,0)", "D13": "=-ROUND($F$2/3,0)", "E13": "=-ROUND($F$2/3,0)", "F13": "=SUM(C13:E13)", "A14": "Total", "C14": "=SUM(C5:C13)", "D14": "=SUM(D5:D13)", "E14": "=SUM(E5:E13)", "A15": "Seuil épique (sur d20)", "C15": "=max(2,20-SUM(C5:C13))", "D15": "=max(2,20-SUM(D5:D13))", "E15": "=min(19, max(2,20-SUM(E5:E13)))", "A16": "Seuil légendaire", "C16": "=C15+7", "D16": "=D15+7", "E16": "=E15+7", "A17": "Seuil mythique", "C17": "=C16+7", "D17": "=D16+7", "E17": "=E16+7", "A19": "Equipement", "D19": "Quantité", "E19": "Poids (kg)", "F19": "Total (kg)", "A20": "Sous d'or (monnaie de Bourg-Preux).", "D20": 785.0, "E20": 0.005, "F20": "=E20*D20", "A21": "Graine de Hurlophore", "D21": 20.0, "E21": 0.001, "F21": "=E21*D21", "A22": "Lettre de recommandation de Spada aupres du sénateur Rapazzoni. ", "D22": 1.0, "E22": 0.02, "F22": "=E22*D22", "A23": "Placement de 500 SO chez le nain Skirfir Rognellard à 0,5% par mois.", "D23": 1.0, "E23": 0.02, "F23": "=E23*D23", "A24": "Ruban de la Lissandière", "D24": 1.0, "E24": 0.02, "F24": "=E24*D24", "A25": "Titre de noblesse: Comte du ducher de Bromael", "D25": 1.0, "E25": 0.02, "F25": "=E25*D25", "A26": "Copropriété des ruines de Garche et des Landes Grises", "D26": 1.0, "E26": 0.02, "F26": "=E26*D26", "A27": "Potion de vérité", "D27": 1.0, "E27": 0.02, "F27": "=E27*D27", "A28": "Graine", "D28": 1.0, "E28": 0.02, "F28": "=E28*D28", "A29": "Composte", "D29": 1.0, "E29": 0.5, "F29": "=E29*D29", "A30": "Eau", "D30": 1.0, "E30": 1.0, "F30": "=E30*D30", "A31": "Couronne de Leomance", "D31": 1.0, "E31": 3.0, "F31": "=E31*D31", "A32": "Rubis qui lie l'invisible au visible", "D32": 1.0, "E32": 0.2, "F32": "=E32*D32", "A34": "Arme", "C34": "Portée (m)", "D34": "Dé", "E34": "Poids", "F34": "Coût (PO)", "A35": "Arc court", "C35": 40.0, "D35": 4.0, "E35": "=(D35/Const!$B$2+C35/Const!$B$1)", "F35": "=E35*12", "A36": "Dague", "D36": 4.0, "E36": "=(D36/Const!$B$2+C36/Const!$B$1)", "F36": "=E36*12", "E37": "=(D37/Const!$B$2+C37/Const!$B$1)", "F37": "=E37*12", "A39": "Sort", "E39": "Durée (min)", "F39": "Coût", "A40": "Génèrer bruits de la nature.", "E40": 10.0, "F40": 1.0, "A41": "Augmentation de DEX +5 pdt de qq à portée.", "E41": 10.0, "F41": 1.0, "A42": "Accélérer croissance plante, 1 min = 1 an.", "E42": 1.0, "F42": 1.0, "A43": "Transformer objet naturel en arme magique d16 de dégats.", "E43": 10.0, "F43": 3.0, "A44": "Transformation en chat ou jaguarondi.", "E44": "indéfini", "F44": 4.0, "A45": "Rage, +4 dextérité, 1d4 degat en plus", "E45": 10.0, "F45": 2.0, "A46": "Savoir faire boisson de potion de vérité (instable, dure 24h)", "E46": 60.0, "F46": 1.0, "A48": "Background", "A49": "Origine", "B49": "Né dans le Canton Vert d'un père elf et d'une mère humaine.", "A50": "Histoire familiale", "B50": "Son père elf l'a instruit a l'art druidique dans les Cinq Vallées.", "A51": "Evènements anciens", "A52": "Objectif de vie", "B52": "(Ecole de druide) Devenir aussi badasse qu'Azog", "A53": "Evènements récents", "B53": "A délivré Spada, le fils du sénateur Rapazzoni, que le parti belliciste de Ciudalia voulait faire chanter."}, "Template": {"A2": "Personnage", "C2": "=A17", "D2": "=A24", "E2": "=A29", "F2": "Blessures", "A3": "Alignement", "C3": "=ROUND(SUM(E17:E24),0)", "D3": "=ROUND(SUM(E24:E29),0)", "E3": 0.0, "F3": 0.0, "A5": "Caractéristique", "C5": "Dextérité\nForce\nEndurance", "D5": "Vitesse\nInitiative\nPerception", "E5": "Charisme\nIntelligence\nVolonté", "F5": "Total", "A6": "Base (12*3)", "C6": 15.0, "D6": 15.0, "E6": 15.0, "F6": "=SUM(C6:E6)", "A7": "Race (+2∕-2)", "F7": "=SUM(C7:E7)", "A8": "Classe (+2∕-2)", "F8": "=SUM(C8:E8)", "A9": "Vêtement  (+1/-1)", "F9": "=SUM(C9:E9)", "A10": "Objet  (+1/-1)", "F10": "=SUM(C10:E10)", "A11": "Couvre-chef  (+1/-1)", "F11": "=SUM(C11:E11)", "A12": "Evolution (+1*N)", "F12": "=SUM(C12:E12)", "A13": "Modificateurs", "C13": "=-C3", "D13": "=-D3", "E13": "=-E3", "F13": "=SUM(C13:E13)", "A14": "=F2", "C14": "=-ROUND($F$3/3,0)", "D14": "=-ROUND($F$3/3,0)", "E14": "=-ROUND($F$3/3,0)", "F14": "=SUM(C14:E14)", "A15": "Seuil de succés (sur d20)", "C15": "=max(2,20-SUM(C6:C14))", "D15": "=max(2,20-SUM(D6:D14))", "E15": "=max(2,20-SUM(E6:E14))", "F15": "=SUM(C15:E15)", "A17": "Objets", "C17": "Quantité", "D17": "Poids (kg)", "E17": "Total (kg)", "F17": "Coût (PO)", "A18": "Sous d'or (monnaie de Bourg-Preux).", "D18": 0.005, "E18": "=D18*C18", "F18": "=C18", "D19": 0.005, "E19": "=D19*'Eloïse'!C21", "E20": "=D20*C20", "E21": "=D21*C21", "E22": "=D22*C22", "A24": "Armes", "C24": "Portée (m)", "D24": "Dé", "E24": "Poids", "F24": "Coût (PO)", "E25": "=(D25/Const!$B$2+C25/Const!$B$1)", "F25": "=E25*12", "E26": "=(D26/Const!$B$2+C26/Const!$B$1)", "F26": "=E26*12", "E27": "=(D27/Const!$B$2+C27/Const!$B$1)", "F27": "=E27*12", "A29": "Sorts", "E29": "Coût", "F29": "Durée (min)", "A36": "Background", "A37": "Origine", "A38": "Histoire familiale", "A39": "Evènements anciens", "A40": "Objectif de vie", "A41": "Evènements récents", "A43": "Régles", "A44": "Combat", "B44": "Attaquant DEX+d20 >= défenseur DEX+d20 => dé d'arme de blessures.", "A45": "Ordre de jeu", "B45": "VIT+d20.", "A46": "Décision de groupe", "B46": "CHA+d20.", "A47": "Défaut", "B47": "DEX/VIT/CHA+d20 > 20."}, "Const": {"A1": "Portée de base (m)", "B1": 20.0, "A2": "Facteur de dé", "B2": 8.0}};
+  const KEY = 'fiche-v1:' + location.pathname;
+  let edits = {};
+  try { edits = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  let cache = {};
+  const colNum = s => s.split('').reduce((n, ch) => n * 26 + ch.charCodeAt(0) - 64, 0);
+  const colName = n => { let s = ''; while (n > 0) { const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); } return s; };
+  const num = v => (typeof v === 'number') ? v : (v === '' || v === null || v === undefined || isNaN(Number(v)) ? 0 : Number(v));
+  function raw(sheet, ref) { return (sheet === 'self' && ref in edits) ? edits[ref] : (D[sheet] || {})[ref]; }
+  function val(sheet, ref) {
+    const k = sheet + '!' + ref;
+    if (k in cache) return cache[k];
+    cache[k] = 0;  // a loop gives 0, not a crash
+    const r = raw(sheet, ref);
+    let out;
+    if (typeof r === 'string' && r.startsWith('=')) { try { out = evalF(r.slice(1), sheet); } catch (e) { out = '#ERR'; } }
+    else out = (r === undefined || r === null) ? '' : r;
+    return (cache[k] = out);
+  }
+  function range(sheet, a, b) {
+    const ma = a.match(/([A-Z]+)(\d+)/), mb = b.match(/([A-Z]+)(\d+)/), out = [];
+    for (let r = +ma[2]; r <= +mb[2]; r++) for (let c = colNum(ma[1]); c <= colNum(mb[1]); c++) out.push(val(sheet, colName(c) + r));
+    return out;
+  }
+  const FUN = {
+    SUM: a => a.flat().reduce((s, v) => s + (typeof v === 'number' ? v : 0), 0),
+    ROUND: a => { const p = Math.pow(10, num(a[1] || 0)); return Math.round(num(a[0]) * p) / p; },
+    MAX: a => Math.max(...a.flat().map(num)), MIN: a => Math.min(...a.flat().map(num)),
+  };
+  function evalF(src, sheet) {
+    let i = 0;
+    const ws = () => { while (src[i] === ' ') i++; };
+    function primary() {
+      ws();
+      if (src[i] === '(') { i++; const v = expr(); ws(); i++; return v; }
+      if (src[i] === '-') { i++; return -num(primary()); }
+      if (src[i] === '+') { i++; return num(primary()); }
+      let m = src.slice(i).match(/^\d+(\.\d+)?/);
+      if (m) { i += m[0].length; return Number(m[0]); }
+      m = src.slice(i).match(/^([A-Za-z]+)\(/);
+      if (m && FUN[m[1].toUpperCase()]) {
+        i += m[0].length; const args = []; ws();
+        if (src[i] !== ')') { for (;;) { args.push(arg()); ws(); if (src[i] === ',') { i++; continue; } break; } }
+        i++; return FUN[m[1].toUpperCase()](args);
+      }
+      m = src.slice(i).match(/^(?:([A-Za-z]+)!)?\$?([A-Z]+)\$?(\d+)(?::\$?([A-Z]+)\$?(\d+))?/);
+      if (m) { i += m[0].length; const sh = m[1] || sheet; return m[4] ? range(sh, m[2] + m[3], m[4] + m[5]) : val(sh, m[2] + m[3]); }
+      throw new Error('formule');
+    }
+    function arg() { return expr(); }
+    function term() { let v = primary(); for (;;) { ws(); const o = src[i]; if (o !== '*' && o !== '/') return v; i++; const w = primary(); v = o === '*' ? num(v) * num(w) : num(v) / num(w); } }
+    function expr() { let v = term(); for (;;) { ws(); const o = src[i]; if (o !== '+' && o !== '-') return v; i++; const w = term(); v = o === '+' ? num(v) + num(w) : num(v) - num(w); } }
+    return expr();
+  }
+  const show = v => typeof v === 'number' ? v.toLocaleString('fr-FR', {maximumFractionDigits: 3}) : String(v);
+  function refresh() {
+    cache = {};
+    document.querySelectorAll('[data-f]').forEach(el => { el.textContent = show(val('self', el.dataset.f)); });
+  }
+  document.querySelectorAll('input[data-c]').forEach(el => {
+    el.addEventListener('input', () => {
+      edits[el.dataset.c] = el.value === '' ? '' : Number(el.value);
+      try { localStorage.setItem(KEY, JSON.stringify(edits)); } catch (e) {}
+      refresh();
+    });
+    if (el.dataset.c in edits) el.value = edits[el.dataset.c];
+  });
+  const reset = document.getElementById('fiche-reset');
+  if (reset) reset.addEventListener('click', () => {
+    edits = {}; try { localStorage.removeItem(KEY); } catch (e) {}
+    document.querySelectorAll('input[data-c]').forEach(el => { el.value = D.self[el.dataset.c]; });
+    refresh();
+  });
+  refresh();
+})();
+</script>
+
+</main>
+</body>
+</html>
