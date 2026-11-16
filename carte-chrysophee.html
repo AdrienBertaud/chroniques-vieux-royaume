@@ -80,7 +80,7 @@ function render() {
   for (const p of M.places) {
     const living = shown['Vivants'] ? (p.people || []).filter(keep) : [];
     if (living.length) {
-      const icon = L.divIcon({className: 'people-icon', html: faces(living), iconSize: null, iconAnchor: [-10, 14]});
+      const icon = L.divIcon({className: 'people-icon', html: faces(living), iconSize: null, iconAnchor: p.pin ? [14, 14] : [-10, 14]});
       const list = living.map(c => '<a href="' + c.href + '">' + c.name + '</a>' + (c.unmet ? ' <small>(non vu)</small>' : '')).join('<br>');
       L.marker([H - p.y, p.x], {icon: icon}).bindPopup('<strong>' + p.name + '</strong><br>' + list).addTo(content);
     }
