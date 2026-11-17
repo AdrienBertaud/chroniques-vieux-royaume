@@ -4,14 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le mystérieux magicien trouble-fête · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=51f62c70">
+<link rel="stylesheet" href="style.css?v=ee23a20f">
 
 </head>
 <body>
 <header><div class="bar">
 <button class="burger" aria-label="Menu" aria-expanded="false"
   onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
-<span class="lines"><span></span><span></span><span></span></span></button></div>
+<span class="lines"><span></span><span></span><span></span></span></button><span class="session-timer" data-start="2026-11-17T14:00" data-minutes="270" hidden></span><script>(()=>{const t=document.currentScript.previousElementSibling;
+const start=new Date(t.dataset.start).getTime(),end=start+t.dataset.minutes*60000;
+const f=ms=>{const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s/60)%60;
+return h+":"+String(m).padStart(2,"0")+":"+String(s%60).padStart(2,"0")};
+const tick=()=>{const now=Date.now();
+if(now<start||now>end+3600000){t.hidden=true;return}
+t.hidden=false;
+if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now)}
+else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
+tick();setInterval(tick,1000)})()</script></div>
 <nav><a href="index.html">Accueil</a>
 <a href="journal.html">Campagne</a>
 <a href="quetes.html">Quêtes</a>

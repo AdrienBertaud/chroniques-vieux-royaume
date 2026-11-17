@@ -248,3 +248,8 @@ ul.library li { margin: .3em 0; }
 .mini.date.letter svg { color: var(--accent); }
 .unmet-icon img { opacity: .75; }
 .unmet-icon b { width: 20px; height: 28px; margin-right: 6px; color: var(--accent); font: 700 20px/28px Georgia, serif; text-shadow: 0 0 3px #fff; }
+
+/* Timer of the game session (site/seance.json) */
+.session-timer { font: 600 1.05em system-ui, sans-serif; color: var(--accent); font-variant-numeric: tabular-nums;
+                 padding: 4px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.session-timer.over { color: #fff; background: #a32020; border-color: #a32020; }
