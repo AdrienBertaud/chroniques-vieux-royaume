@@ -19,7 +19,17 @@ if(now<start){const d=new Date(start),p=n=>String(n).padStart(2,"0");t.classList
 t.innerHTML="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+'<span class="long"> · durée prévue '+f(end-start).replace(/ 00$/,"")+"</span>"}
 else if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
 else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
-tick();setInterval(tick,1000)})()</script><div class="bar">
+tick();setInterval(tick,1000)})()</script><button class="music-btn" type="button" data-src="audio/echoes-of-time.mp3" title="Musique : Echoes of Time" aria-label="Musique">♪</button><script>(()=>{const b=document.currentScript.previousElementSibling,src=b.dataset.src;
+const a=new Audio(src);a.loop=true;a.volume=.35;
+const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const t=parseFloat(get("music-time:"+src)||"0");if(t>0)a.currentTime=t;
+const show=()=>{b.classList.toggle("playing",!a.paused);b.textContent=a.paused?"♪":"❚❚"};
+a.addEventListener("play",show);a.addEventListener("pause",show);
+b.addEventListener("click",()=>{if(a.paused){set("music-off","0");a.play()}else{set("music-off","1");a.pause()}});
+addEventListener("pagehide",()=>set("music-time:"+src,String(a.currentTime)));
+if(get("music-off")!=="1")a.play().catch(()=>{
+addEventListener("pointerdown",e=>{if(e.target!==b&&a.paused&&get("music-off")!=="1")a.play().catch(()=>{})},{once:true})});
+show()})()</script><div class="bar">
 <button class="burger" aria-label="Menu" aria-expanded="false"
   onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
 <span class="lines"><span></span><span></span><span></span></span></button></div>
@@ -41,6 +51,7 @@ tick();setInterval(tick,1000)})()</script><div class="bar">
 <li><a href="livre-chronologie.html"><em>Grand Comput des années du royaume</em></a> : la chronologie du <a class="auto" href="lieux-le-vieux-royaume.html">Vieux Royaume</a>, jusqu'à l'an 994 CR inclus.</li>
 <li><a href="livre-religions-30-legende-vin-de-vanael.html"><em>La légende du Vin de Vanaël</em></a></li>
 </ol>
+<footer class="music-credit">Musique : « Echoes of Time », Kevin MacLeod (<a href="https://incompetech.com" target="_blank" rel="noopener">incompetech.com</a>), licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY 4.0</a></footer>
 <nav class="prev-next"><a href="lieux-ga-pigeonnier.html">← Le pigeonnier</a><span></span><a href="lieux-ga-laboratoire.html">Le laboratoire →</a></nav>
 </main>
 </body>

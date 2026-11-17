@@ -19,7 +19,7 @@ if(now<start){const d=new Date(start),p=n=>String(n).padStart(2,"0");t.classList
 t.innerHTML="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+'<span class="long"> · durée prévue '+f(end-start).replace(/ 00$/,"")+"</span>"}
 else if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
 else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
-tick();setInterval(tick,1000)})()</script><button class="music-btn" type="button" data-src="audio/lost-frontier.mp3" title="Musique : Lost Frontier" aria-label="Musique">♪</button><script>(()=>{const b=document.currentScript.previousElementSibling,src=b.dataset.src;
+tick();setInterval(tick,1000)})()</script><button class="music-btn" type="button" data-src="audio/desert-of-lost-souls.mp3" title="Musique : Desert of Lost Souls" aria-label="Musique">♪</button><script>(()=>{const b=document.currentScript.previousElementSibling,src=b.dataset.src;
 const a=new Audio(src);a.loop=true;a.volume=.35;
 const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const t=parseFloat(get("music-time:"+src)||"0");if(t>0)a.currentTime=t;
@@ -52,7 +52,7 @@ show()})()</script><div class="bar">
 <li>Les héros sont comtes à la cour du <a class="auto" href="pnj-duc-bromael.html">duc Ganelon</a> de <a class="auto" href="lieux-duche-de-bromael.html">Bromaël</a>, mais ils tiennent les Landes Grises en leur nom propre : elles sont hors du duché. Le duc ne conteste pas leurs droits.</li>
 <li>Des paysans des terres voisines s'y installent pour fuir l'impôt. Les héros prélèvent 25 % des récoltes.</li>
 </ul>
-<footer class="music-credit">Musique : « Lost Frontier », Kevin MacLeod (<a href="https://incompetech.com" target="_blank" rel="noopener">incompetech.com</a>), licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY 4.0</a></footer>
+<footer class="music-credit">Musique : « Desert of Lost Souls », Kevin MacLeod (<a href="https://incompetech.com" target="_blank" rel="noopener">incompetech.com</a>), licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY 4.0</a></footer>
 <nav class="prev-next"><a href="lieux-thalassyr.html">← Thalassyr</a><span></span><a href="carte-chrysophee.html">Chrysophée →</a></nav>
 </main>
 </body>
