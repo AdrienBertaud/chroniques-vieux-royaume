@@ -4,20 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>La haute magie · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=fbd88f5a">
+<link rel="stylesheet" href="style.css?v=57c22b26">
 
 </head>
 <body>
-<header><div class="bar"><span class="session-timer" data-start="2026-11-17T14:00" data-minutes="10" hidden></span><script>(()=>{const t=document.currentScript.previousElementSibling;
+<header><span class="session-timer" data-start="2026-11-21T14:00" data-minutes="10" hidden></span><script>(()=>{const t=document.currentScript.previousElementSibling;
 const start=new Date(t.dataset.start).getTime(),end=start+t.dataset.minutes*60000;
 const f=(ms,up)=>{const t=up?Math.ceil(ms/60000):Math.floor(ms/60000);
 return Math.floor(t/60)+" h "+String(t%60).padStart(2,"0")};
 const tick=()=>{const now=Date.now();
-if(now<start||now>end+3600000){t.hidden=true;return}
+if(now>end+3600000){t.hidden=true;return}
 t.hidden=false;
-if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
+if(now<start){const d=new Date(start),p=n=>String(n).padStart(2,"0");t.classList.remove("over");
+t.textContent="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())}
+else if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
 else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
-tick();setInterval(tick,1000)})()</script>
+tick();setInterval(tick,1000)})()</script><div class="bar">
 <button class="burger" aria-label="Menu" aria-expanded="false"
   onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
 <span class="lines"><span></span><span></span><span></span></span></button></div>
