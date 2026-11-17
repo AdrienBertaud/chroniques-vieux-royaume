@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chartes et franchises de la Marche Franche</title>
-<link rel="stylesheet" href="style.css?v=6203f0dd">
+<link rel="stylesheet" href="style.css?v=e5cb7d56">
 
 </head>
 <body>
@@ -16,7 +16,7 @@ const tick=()=>{const now=Date.now();
 if(now>end+3600000){t.hidden=true;return}
 t.hidden=false;
 if(now<start){const d=new Date(start),p=n=>String(n).padStart(2,"0");t.classList.remove("over");
-t.textContent="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+" · durée prévue "+f(end-start).replace(/ 00$/,"")}
+t.innerHTML="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+'<span class="long"> · durée prévue '+f(end-start).replace(/ 00$/,"")+"</span>"}
 else if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
 else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
 tick();setInterval(tick,1000)})()</script><div class="bar">

@@ -255,5 +255,13 @@ ul.library li { margin: .3em 0; }
 .session-timer.over { color: #fff; background: #a32020; border-color: #a32020; }
 .session-timer { position: fixed; left: 50%; top: 10px; transform: translateX(-50%); white-space: nowrap; line-height: 26px; z-index: 1001; }
 @media (max-width: 560px) {
-  .session-timer { font-size: .85em; left: calc(50% - 26px); padding: 4px 8px; }
+  .session-timer { font-size: .85em; padding: 4px 8px; }
+  .session-timer .long { display: none; }
 }
+
+/* Music of a page (a "- Musique : audio/<file>.mp3" line) */
+.music-btn { position: fixed; top: 10px; left: 10px; z-index: 1001; width: 38px; height: 38px; padding: 0;
+             border: 1px solid var(--accent); border-radius: 8px; background: var(--paper); color: var(--accent);
+             font: 600 18px/1 system-ui, sans-serif; cursor: pointer; }
+.music-btn.playing { background: var(--accent); color: var(--paper); font-size: 13px; }
+footer.music-credit { font-size: .75em; }

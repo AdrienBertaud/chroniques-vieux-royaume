@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Accueil · Une campagne de jeu de rôle dans le Vieux Royaume</title>
-<link rel="stylesheet" href="style.css?v=6203f0dd">
+<link rel="stylesheet" href="style.css?v=e5cb7d56">
 
 </head>
 <body>
@@ -16,10 +16,20 @@ const tick=()=>{const now=Date.now();
 if(now>end+3600000){t.hidden=true;return}
 t.hidden=false;
 if(now<start){const d=new Date(start),p=n=>String(n).padStart(2,"0");t.classList.remove("over");
-t.textContent="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+" · durée prévue "+f(end-start).replace(/ 00$/,"")}
+t.innerHTML="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+'<span class="long"> · durée prévue '+f(end-start).replace(/ 00$/,"")+"</span>"}
 else if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
 else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
-tick();setInterval(tick,1000)})()</script><div class="bar">
+tick();setInterval(tick,1000)})()</script><button class="music-btn" type="button" data-src="audio/teller-of-the-tales.mp3" title="Musique : Teller of the Tales" aria-label="Musique">♪</button><script>(()=>{const b=document.currentScript.previousElementSibling,src=b.dataset.src;
+const a=new Audio(src);a.loop=true;a.volume=.35;
+const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const t=parseFloat(get("music-time:"+src)||"0");if(t>0)a.currentTime=t;
+const show=()=>{b.classList.toggle("playing",!a.paused);b.textContent=a.paused?"♪":"❚❚"};
+a.addEventListener("play",show);a.addEventListener("pause",show);
+b.addEventListener("click",()=>{if(a.paused){set("music-off","0");a.play()}else{set("music-off","1");a.pause()}});
+addEventListener("pagehide",()=>set("music-time:"+src,String(a.currentTime)));
+if(get("music-off")!=="1")a.play().catch(()=>{
+addEventListener("pointerdown",e=>{if(e.target!==b&&a.paused&&get("music-off")!=="1")a.play().catch(()=>{})},{once:true})});
+show()})()</script><div class="bar">
 <button class="burger" aria-label="Menu" aria-expanded="false"
   onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
 <span class="lines"><span></span><span></span><span></span></span></button></div>
@@ -43,6 +53,7 @@ tick();setInterval(tick,1000)})()</script><div class="bar">
 <li><a class="with-thumb" href="carte.html"><img class="mini" src="img/thumb-inline-vieux-royaume.jpg?v=c9d7b25b" alt="" loading="lazy"><span class="who">Carte<small>Le Vieux Royaume, ses villes et ses lieux</small></span></a></li>
 <li><a class="with-thumb" href="histoire.html"><img class="mini" src="img/thumb-inline-01-forge-des-gemmes.jpg?v=b6db068b" alt="" loading="lazy"><span class="who">Lore<small>L&#x27;histoire, les mythes, les religions et les langues</small></span></a></li>
 </ul>
+<footer class="music-credit">Musique : « Teller of the Tales », Kevin MacLeod (<a href="https://incompetech.com" target="_blank" rel="noopener">incompetech.com</a>), licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY 4.0</a></footer>
 <nav class="prev-next"><a href="histoire.html">← Lore</a><span></span><a href="journal.html">Campagne →</a></nav>
 </main>
 </body>
