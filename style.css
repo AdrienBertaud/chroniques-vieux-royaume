@@ -253,3 +253,5 @@ ul.library li { margin: .3em 0; }
 .session-timer { font: 600 1.05em system-ui, sans-serif; color: var(--accent); font-variant-numeric: tabular-nums;
                  padding: 4px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
 .session-timer.over { color: #fff; background: #a32020; border-color: #a32020; }
+header .bar { position: relative; }
+.session-timer { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
