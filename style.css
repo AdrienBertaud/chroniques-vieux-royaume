@@ -254,3 +254,6 @@ ul.library li { margin: .3em 0; }
                  padding: 4px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
 .session-timer.over { color: #fff; background: #a32020; border-color: #a32020; }
 .session-timer { position: fixed; left: 50%; top: 10px; transform: translateX(-50%); white-space: nowrap; line-height: 26px; z-index: 1001; }
+@media (max-width: 560px) {
+  .session-timer { font-size: .85em; left: calc(50% - 26px); padding: 4px 8px; }
+}
