@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jouer</title>
+<link rel="stylesheet" href="style.css?v=e5cb7d56">
+<style>
+header .session-timer { display: none !important; }
+#game #clock { font-weight: 600; color: var(--accent); }
+#game button.search { border-style: dotted; }
+.music-line { margin-top: 32px; color: var(--muted); font: .8em system-ui, sans-serif; }
+#game .state { font: .9em system-ui, sans-serif; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 12px; }
+.sitelink { margin: -8px 0 12px; font: .9em system-ui, sans-serif; }
+#game .codes { color: var(--muted); }
+#game h2 .num { color: var(--muted); font-size: .7em; margin-right: 6px; }
+#game button { font: 1em Georgia, serif; color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+  border-radius: 8px; padding: 10px 14px; cursor: pointer; text-align: left; }
+#game button:hover:not(:disabled) { border-color: var(--accent); }
+#game button:disabled { opacity: .5; cursor: default; }
+#choices { display: grid; gap: 8px; margin: 24px 0 8px; }
+#choices small, .heroes small { color: var(--muted); font-family: system-ui, sans-serif; margin-left: 6px; }
+.heroes { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.heroes button small, .modes button small { display: block; margin: 4px 0 0; }
+#game .heroes button.picked { border: 2px solid var(--accent); }
+.modes { display: grid; gap: 8px; }
+.modes .join { display: flex; gap: 8px; }
+.modes input { flex: 1; font: 1em system-ui, sans-serif; padding: 8px 12px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink); text-transform: uppercase; }
+#game button.go small { color: var(--paper); opacity: .85; }
+#roll button { margin: 0 6px 6px 0; }
+#game button.go { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.roll { font: 1.05em system-ui, sans-serif; padding: 8px 12px; border-radius: 8px; }
+.roll.win { background: color-mix(in srgb, #2e7d32 18%, transparent); }
+.roll.lose { background: color-mix(in srgb, #a32020 18%, transparent); }
+.ko { border-left: 4px solid #a32020; padding: 4px 12px; margin: 16px 0; }
+.end { text-align: center; font-size: 1.4em; color: var(--accent); margin: 32px 0; }
+#friends ul { padding-left: 18px; font-family: system-ui, sans-serif; font-size: .9em; }
+#friends button { padding: 2px 10px; margin-left: 6px; font-size: .9em; }
+.tools { margin-top: 40px; display: flex; justify-content: space-between; align-items: center;
+  color: var(--muted); font: .85em system-ui, sans-serif; }
+.map { position: relative; margin: 12px 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.map img { width: 100%; display: block; }
+#game .mark { position: absolute; transform: translate(-50%, -50%); width: 22px; height: 22px; padding: 0;
+  border-radius: 50%; background: var(--accent); border: 3px solid var(--paper); box-shadow: 0 1px 4px #0008; }
+#game .mark.here { background: #2e7d32; }
+#game .mark span { position: absolute; left: 50%; top: 22px; transform: translateX(-50%); white-space: nowrap;
+  font: 600 .8em system-ui, sans-serif; color: #fff; background: #000a; padding: 2px 6px; border-radius: 4px; }
+#game .mark.up span { top: auto; bottom: 22px; }
+#game button.tomap { border-style: dashed; }
+#game button.small { font-size: .8em; padding: 4px 10px; }
+
+.livre-box { border: 2px solid var(--accent); border-radius: 10px; padding: 8px 14px 12px; margin: 0 0 20px;
+  background: var(--paper); font-family: system-ui, sans-serif; }
+.livre-box h3 { margin: 6px 0; }
+.livre-box p { margin: 4px 0 8px; }
+.livre-box .act, .livre-box .done { display: block; margin: 6px 0; padding: 8px 12px; border: 1px solid var(--line);
+  border-radius: 8px; text-decoration: none; color: var(--ink); }
+.livre-box .act:hover { border-color: var(--accent); }
+.livre-box .act.ghost { border-style: dashed; }
+.livre-box .done { color: var(--muted); }
+nav a.livre-link { color: var(--accent); font-weight: 600; }
+a.livre-card { border: 2px solid var(--accent) !important; }
+.teaser-when { font-size: 1.15em; } .teaser-count { font: 600 1.4em system-ui, sans-serif; color: var(--accent); }</style>
+</head>
+<body>
+<header><span class="session-timer" data-start="2026-11-22T14:00" data-minutes="240" hidden></span><script>(()=>{const t=document.currentScript.previousElementSibling;
+const start=new Date(t.dataset.start).getTime(),end=start+t.dataset.minutes*60000;
+const f=(ms,up)=>{const t=up?Math.ceil(ms/60000):Math.floor(ms/60000);
+return Math.floor(t/60)+" h "+String(t%60).padStart(2,"0")};
+const tick=()=>{const now=Date.now();
+if(now>end+3600000){t.hidden=true;return}
+t.hidden=false;
+if(now<start){const d=new Date(start),p=n=>String(n).padStart(2,"0");t.classList.remove("over");
+t.innerHTML="📅 Début : "+p(d.getDate())+"/"+p(d.getMonth()+1)+" "+p(d.getHours())+":"+p(d.getMinutes())+'<span class="long"> · durée prévue '+f(end-start).replace(/ 00$/,"")+"</span>"}
+else if(now<=end){t.classList.remove("over");t.textContent="⏳ "+f(end-now,true)}
+else{t.classList.add("over");t.textContent="⌛ Fin de la séance (+"+f(now-end)+")"}};
+tick();setInterval(tick,1000)})()</script><div class="bar">
+<button class="burger" aria-label="Menu" aria-expanded="false"
+  onclick="const h=this.closest('header');const o=h.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+<span class="lines"><span></span><span></span><span></span></span></button></div>
+<nav><a href="livre.html" class="livre-link active">🎲 Jouer</a><a href="index.html">Accueil</a>
+<a href="journal.html">Campagne</a>
+<a href="quetes.html">Quêtes</a>
+<a href="pnj.html">Personnages</a>
+<a href="carte.html">Carte</a>
+<a href="histoire.html">Lore</a></nav></header>
+<main><h1>La dernière aventure</h1>
+<p class="teaser-when">Le jeu commencera le <strong>dimanche 22 novembre 2026 à 14 h 00</strong>, pour une durée de <strong>4 h</strong>.</p>
+<p id="teaser-count" class="teaser-count"></p>
+<p>Ce jour-là, cette page deviendra le jeu : un livre dont vous êtes le héros, à jouer seul ou en groupe, depuis votre
+ordinateur ou votre téléphone. Vous choisirez votre héros, vous vous déplacerez sur la carte, et le chronomètre
+tournera dès votre premier pas.</p>
+<p>En attendant, relisez le <a href="journal.html">récit de la campagne</a>, les <a href="quetes.html">quêtes</a> et le
+<a href="histoire.html">lore</a> : ils pourront vous servir.</p>
+<script>(() => {
+  const start = new Date("2026-11-22T14:00").getTime(), out = document.getElementById("teaser-count");
+  const tick = () => {
+    const ms = start - Date.now();
+    if (ms <= 0) { out.textContent = "C'est l'heure ! Le jeu ouvre dans quelques minutes : rechargez la page."; return; }
+    const m = Math.ceil(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60);
+    out.textContent = "⏳ Dans " + (d ? d + " j " : "") + h + " h " + String(m % 60).padStart(2, "0") + " min";
+  };
+  tick(); setInterval(tick, 20000);
+})();</script></main>
+
+
+</body>
+</html>
