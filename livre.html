@@ -8,6 +8,7 @@
 <style>
 header .session-timer { display: none !important; }
 #game #clock { font-weight: 600; color: var(--accent); }
+#game .state .so { color: #3b82f6; }
 #game button.search { border-style: dotted; }
 .music-line { margin-top: 32px; color: var(--muted); font: .8em system-ui, sans-serif; }
 #game .state { font: .9em system-ui, sans-serif; background: var(--paper); border: 1px solid var(--line);
@@ -48,6 +49,12 @@ header .session-timer { display: none !important; }
 #game .mark span { position: absolute; left: 50%; top: 22px; transform: translateX(-50%); white-space: nowrap;
   font: 600 .8em system-ui, sans-serif; color: #fff; background: #000a; padding: 2px 6px; border-radius: 4px; }
 #game .mark.up span { top: auto; bottom: 22px; }
+#game .map.world .mark { width: 16px; height: 16px; border-width: 2px; }
+#game .map.world .mark span { display: none; }
+#game .map.world .mark.sel span, #game .map.world .mark.here span { display: block; z-index: 2; }
+#game .map.world .mark.sel, #game .mark.sel { background: #fff; }
+#game .about { border: 1px solid var(--line); border-radius: 8px; padding: 4px 14px; margin: 8px 0; background: var(--paper); }
+#game .about h3 { margin: 8px 0 4px; }
 #game button.tomap { border-style: dashed; }
 #game button.small { font-size: .8em; padding: 4px 10px; }
 
@@ -86,7 +93,7 @@ tick();setInterval(tick,1000)})()</script><div class="bar">
 <a href="pnj.html">Personnages</a>
 <a href="carte.html">Carte</a>
 <a href="histoire.html">Lore</a></nav></header>
-<main><h1>La dernière aventure</h1>
+<main><h1>Dernier épisode de la campagne</h1>
 <p class="teaser-when">Le jeu commencera le <strong>dimanche 22 novembre 2026 à 14 h 00</strong>, pour une durée de <strong>4 h</strong>.</p>
 <p id="teaser-count" class="teaser-count"></p>
 <p>Ce jour-là, cette page deviendra le jeu : un livre dont vous êtes le héros, à jouer seul ou en groupe, depuis votre
